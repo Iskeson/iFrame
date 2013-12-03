@@ -73,6 +73,17 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 #PopupBox p{padding:10px;}
 #PopupBox p a{color:#093a82;font-weight:bold;}
 #PopupBox .save_card{padding:10px;}
+#secure_logo{width:100%;text-align:left;}
+#secure_logo li{display:inline-block;background:url(https://static.payu.in/images/mobile_default/all_logo.gif) no-repeat;border:1px solid #e9e9e9;height:33px;background-repeat:no-repeat;}
+#secure_logo li a{display:block;height:33px}
+#secure_logo li.visa{background-position:-86px 0;width:52px}
+#secure_logo li.visa a{width:52px}
+#secure_logo li.master{background-position:-140px 0;width:81px}
+#secure_logo li.master a{width:81px}
+#secure_logo li.verisign{background-position:-224px 0;width:63px}
+#secure_logo li.verisign a{width:63px}
+#secure_logo li.pci{background-position:-287px 0;width:95px}
+#secure_logo li.pci a{width:95px}
 </style>
 </head>
 <body>
@@ -535,6 +546,14 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 					</div>
 				</div>
 			</div>
+			<p class="">
+				<ul id="secure_logo">
+			        <li class="visa"><a url="https://usa.visa.com/personal/security/vbv/index.html?ep=v_sym_/verified" href="javascript:void(0);"></a></li>
+			        <li class="master"><a url="http://www.mastercard.com/us/business/en/corporate/securecode/sc_popup.html?language=en" href="javascript:void(0);"></a></li>
+			        <li class="verisign"><a url="https://seal.verisign.com/splash?form_file=fdf/splash.fdf&dn=www.payu.in&lang=en" href="javascript:void(0);"></a></li>
+			        <li class="pci"><a url="http://seal.controlcase.com/index.php?page=showCert&cId=3877025869" href="javascript:void(0);"></a></li>
+			    </ul>
+			</p>
 		</div>
 	</div>
 	<div id="PopupBox">
@@ -691,7 +710,7 @@ $(document).ready(function(){
 		if($(this).attr("token") != '0'){
 			var CurrentCard = StoredCards[$(this).attr("token")];
 			ParentElement.find("input[name='cvv']").removeClass("error");
-			ParentElement.find("input[name='card_number']").val(CurrentCard.card_no).attr("readonly", true).removeClass("validate error").next(".icon").removeClass("mastercard visa maestro dinner amex").addClass(CurrentCard.card_brand.toLowerCase());
+			ParentElement.find("input[name='card_number']").val(CurrentCard.card_no).attr("readonly", true).removeClass("validate error").next(".icon").removeClass("mastercard visa maestro diners amex").addClass(CurrentCard.card_brand.toLowerCase());
 			ParentElement.find("input[name='name_on_card']").val(CurrentCard.name_on_card).attr("readonly", true).removeClass("validate error");
 			ParentElement.find('select.ExpiryMonth, select.ExpiryYear').hide().removeClass('validate error');
 			ParentElement.find(".ExpiryYearLabel, .ExpiryMonthLabel").show();
@@ -711,7 +730,7 @@ $(document).ready(function(){
 			}
 			$("#IbiboCode").val(CurrentCard.card_type);
 		}else{
-			ParentElement.find("input[name='card_number']").val("").attr("readonly", false).removeClass("error").addClass("validate").next(".icon").removeClass("mastercard visa maestro dinner amex");
+			ParentElement.find("input[name='card_number']").val("").attr("readonly", false).removeClass("error").addClass("validate").next(".icon").removeClass("mastercard visa maestro diners amex");
 			ParentElement.find("input[name='name_on_card']").val("").attr("readonly", false).removeClass("error").addClass("validate");
 			ParentElement.find('select.ExpiryMonth, select.ExpiryYear').show().addClass('validate').removeClass("error disable").val("").attr("disabled", false);
 			ParentElement.find(".ExpiryYearLabel, .ExpiryMonthLabel").hide();
@@ -814,6 +833,11 @@ $(document).ready(function(){
 	$("#LearnMoreOkButton").click(function(){
 		$("#PopupBox").hide();
 	});
+	
+	$("#secure_logo a").click(function(){
+		top[0].open($(this).attr("url"), "_blank","toolbar=0,scrollbars=1,resizable=1,width=550,height=500");
+		return false;
+	});
 });
 var ResetAll = function(){
 	$("#CreditCardForm").resetAll();
@@ -841,7 +865,7 @@ var ResetAll = function(){
 }
 
 $.fn.resetAll = function(){
-	$(this).find("input, select").not(":submit, :button").val("").removeClass("error").next(".icon").removeClass("visa maestro mastercard amex dinner");
+	$(this).find("input, select").not(":submit, :button").val("").removeClass("error").next(".icon").removeClass("visa maestro mastercard amex diners");
 	$(this).find(".ExpiryMonthLabel, .ExpiryYearLabel").hide();
 	$(this).find(".ExpiryYear, .ExpiryMonth").show();
 }
