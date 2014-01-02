@@ -1000,7 +1000,7 @@ $.fn.validate = function(){
 				}
 				if($("#Category").val() == 'creditcard' && CardObject.ibibocode != "AMEX" && CardObject.ibibocode != "DINR"){
 					$("#IbiboCode").val("CC");
-				}else if($("#Category").val() == "debitcard" && CardObject.ibibocode != "MAES" && CardObject.ibibocode != "MAST" && CardObject.ibibocode != "SMAE") {
+				}else if($("#Category").val() == "debitcard" && CardObject.ibibocode != "MAES" && CardObject.ibibocode != "MAST" && CardObject.ibibocode != "SMAE" && CardObject.ibibocode != "AMEX" && CardObject.ibibocode != "DINR") {
 					$("#IbiboCode").val("VISA");
 				}else if($("#Category").val() != "emi" && $("#Category").val() != "cashcard") {
 					$("#IbiboCode").val(CardObject.ibibocode);
