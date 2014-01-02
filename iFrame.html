@@ -1022,7 +1022,7 @@ $.fn.validate = function(){
 					Element.parents(".form").find('input[name="cvv"]').attr('maxlength', '3').attr('validate', 'cvv');
 				}
 				
-				if(typeof PayU.getIbiboCodes()[$("#Category").val()][$("#IbiboCode").val()] == "undefined"){
+				if(typeof PayU.getIbiboCodes()['creditcard'][$("#IbiboCode").val()] == "undefined" && typeof PayU.getIbiboCodes()['debitcard'][$("#IbiboCode").val()] == "undefined"){
 					Element.parents(".form").find(".ErrorMessage").text("This card not supported by merchant").show();
 					Element.addClass('error');
 					ReturnFlag = false;
