@@ -984,12 +984,17 @@ $.fn.validate = function(){
 		if(FieldType == "card_number" && Element.val() == ""){
 			Element.parents(".form").find(".ErrorMessage").text("").hide();
 		}
-		
 		if(FieldType == 'card_number' && Element.val() != ''){
 			var CardObject = GetCardType(Element.val());
+			$("#Category").val($("#tabs li.sel a").attr('category'));
 			Element.next('.icon').removeClass('mastercard visa maestro diners amex');
 			if(CardObject){
 				Element.next('.icon').addClass(CardObject.name);
+				if(CardObject.ibibocode == "AMEX" || CardObject.ibibocode == "DINR"){
+					$("#Category").val('creditcard');
+				}else if(CardObject.ibibocode == "MAES"){
+					$("#Category").val('debitcard');
+				}
 				if(CardObject.name == 'maestro' && Flag == '' && ($("#Category").val() == 'creditcard' || $("#Category").val() == 'debitcard')){
 					if(!Element.parents(".form").find('.ShowCvvExpiry').is(":visible")){
 						Element.parents(".form").find('.HideCvvExpiry').show();
@@ -997,9 +1002,6 @@ $.fn.validate = function(){
 					if($("#Category").val() == 'creditcard'){
 						$("#Category").val('debitcard');
 					}
-				}
-				if(CardObject.ibibocode != "AMEX" || CardObject.ibibocode != "DINR"){
-					$("#Category").val('creditcard');
 				}
 				if($("#Category").val() == 'creditcard' && CardObject.ibibocode != "AMEX" && CardObject.ibibocode != "DINR"){
 					$("#IbiboCode").val("CC");
@@ -1011,6 +1013,7 @@ $.fn.validate = function(){
                 if(CardObject.ibibocode == 'MAES' && typeof PayU.getIbiboCodes()[$("#Category").val()]['MAES'] == 'undefined' && typeof PayU.getIbiboCodes()[$("#Category").val()]['SMAE'] != 'undefined'){
 					if(SbiBinList.inArray(Element.val().substr(0, 6))){
 						$("#IbiboCode").val('SMAE');
+						$("#Category").val('debitcard');
 					}
 				}
                 
