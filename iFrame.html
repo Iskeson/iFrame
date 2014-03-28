@@ -593,6 +593,10 @@ var SbiBinList = ["504435","504645","504774","504775","504809","504993","600206"
 var CurrentCapta = null;
 FormError = false;
 $(document).ready(function(){
+	$("#secure_logo a").click(function(){
+		top[0].open($(this).attr("url"), "_blank","toolbar=0,scrollbars=1,resizable=1,width=550,height=500");
+		return false;
+	});
 	CurrentCapta = getCaptcha();
 	$("#CaptchaDiv span").text(CurrentCapta);
 	$("#StoredCreditCardContainer").hide();
@@ -832,11 +836,6 @@ $(document).ready(function(){
 
 	$("#LearnMoreOkButton").click(function(){
 		$("#PopupBox").hide();
-	});
-	
-	$("#secure_logo a").click(function(){
-		top[0].open($(this).attr("url"), "_blank","toolbar=0,scrollbars=1,resizable=1,width=550,height=500");
-		return false;
 	});
 });
 var ResetAll = function(){
