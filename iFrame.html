@@ -31,6 +31,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 #CardConatiner .page .form .row .two .textbox{width:93%;}
 #CardConatiner .page .form .row .two .textbox.captcha{width:40%;float:left;}
 #CardConatiner .page .form .row_new{width:100%;margin:5px 0 15px 0;}
+#CardConatiner .page .form .row_new label{font-size:12px;margin-bottom:5px;display:block;font-weight:bold;}
 .error{border-color:#bf0303 !important;background:#fdc6c6;color:#bf0303;}
 .drop_down{padding:5px;border:1px solid #AAA;font-size:14px;width:96.6%;cursor:pointer;position:relative;}
 .drop_down:hover{border-color:#3d3d3d;}
@@ -84,6 +85,22 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 #secure_logo li.verisign a{width:63px}
 #secure_logo li.pci{background-position:-287px 0;width:95px}
 #secure_logo li.pci a{width:95px}
+.StoreCardUl{padding:0 0 5px 0;overflow:auto;}
+.StoreCardUl li{clear:both;overflow:auto;padding:10px 0 10px 10px;border-bottom:1px solid #DDD;}
+.StoreCardUl li.store_card_selector{border-bottom:1px solid #DDD;}
+.StoreCardUl li.use_new_card{background:#EEE;}
+.StoreCardUl li.use_new_card .radio{margin:0 10px 0 0;}
+.StoreCardUl li.use_new_card{font-weight:bold;}
+.StoreCardUl .radio{float:left;margin-top:10px;margin-right:10px;}
+.StoreCardUl div{display:inline-block;float:left;}
+.StoreCardUl div.store_card_icon{padding:5px 10px;border:1px solid #AAA;background:#EEE;margin-right:10px;}
+.StoreCardUl div.store_card_icon span{display:block;width:32px;height:22px;}
+.StoreCardUl div.store_card_label{font-size:16px;font-weight:normal;margin-right:10px;}
+.StoreCardUl div.store_card_label span{font-size:12px;display:block;}
+.StoreCardUl div .textbox{padding:8px;border:1px solid #AAA;font-size:14px;width:50px;}
+.StoreCardUl .remove_store_card{margin-top:3px;float:right;padding:5px 5px 5px 25px;background:url(https://static.payu.in/images/mobile_default/icons/error_icon.png) no-repeat 4px center;border:1px solid #DDD;}
+.StoreCardUl .remove_store_card:hover{background-color:#EEE;}
+.new_card_form{display:none;}
 </style>
 </head>
 <body>
@@ -94,12 +111,12 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 	<div id="wrapper">
 		<div id="TabContainer">
 			<ul id="tabs">
-				<li class="creditcard"><a href="#CreditCard" category="creditcard" default-ibibo-code="CC">Credit&nbsp;Card</a><span class="white"></span></li>
-				<li class="debitcard"><a href="#DebitCard" category="debitcard" default-ibibo-code="VISA">Debit&nbsp;Card</a><span class="white"></li>
+				<li class="creditcard"><a href="#CreditCard" category="creditcard" default-ibibo-code="CC">Credit Card</a><span class="white"></span></li>
+				<li class="debitcard"><a href="#DebitCard" category="debitcard" default-ibibo-code="VISA">Debit Card</a><span class="white"></li>
 				<li class="emi"><a href="#EMI" category="emi" default-ibibo-code="">EMI</a><span class="white"></li>
-				<li class="netbanking"><a href="#NetBanking" category="netbanking" default-ibibo-code="">Net&nbsp;Banking</a><span class="white"></li>
-				<li class="cashcard"><a href="#CashCard" category="cashcard" default-ibibo-code="">Cash&nbsp;Card</a><span class="white"></li>
-				<li class="cod"><a href="#COD" category="cod" default-ibibo-code="COD">Cash&nbsp;on&nbsp;Delivery</a><span class="white"></li>
+				<li class="netbanking"><a href="#NetBanking" category="netbanking" default-ibibo-code="">Net Banking</a><span class="white"></li>
+				<li class="cashcard"><a href="#CashCard" category="cashcard" default-ibibo-code="">Cash Card</a><span class="white"></li>
+				<li class="cod"><a href="#COD" category="cod" default-ibibo-code="COD">Cash on Delivery</a><span class="white"></li>
 			</ul>
 		</div>
 		<div id="CardConatiner">
@@ -108,84 +125,85 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 				<div class="form" id="CreditCardForm">
 					<div class="row_new" id="StoredCreditCardContainer">
 						<div class="one">
-							<div class="drop_down"> <span>Select Saved Card</span>
-								<div class="dp_arrow"></div>
-								<div class="dp_content">
-									<ul id="StoredCreditCards">
-										<li class="sel" token="0">Select Saved Card</li>
-									</ul>
+							<label>Select Stored Card</label>
+							<ul id="StoredCreditCards" class="StoreCardUl">
+								<li class="use_new_card">
+									<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0" />
+									<div>Use New Card</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="new_card_form">
+						<p class="ErrorMessage">This is error message</p>
+						<div class="row">
+							<div class="one">
+								<label>Card Number</label>
+								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number" />
+								<span class="icon"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="one">
+								<label>Name on Card</label>
+								<input type="text" class="textbox validate"  validate="name_on_card" name="name_on_card" placeholder="Name on Card" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="three">
+								<label>Expiry Month</label>
+								<div class="textbox ExpiryMonthLabel hidden">XX</div>
+								<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+									<option value="">Month</option>
+									<option value="01">Jan (01)</option>
+									<option value="02">Feb (02)</option>
+									<option value="03">Mar (03)</option>
+									<option value="04">Apr (04)</option>
+									<option value="05">May (05)</option>
+									<option value="06">Jun (06)</option>
+									<option value="07">Jul (07)</option>
+									<option value="08">Aug (08)</option>
+									<option value="09">Sep (09)</option>
+									<option value="10">Oct (10)</option>
+									<option value="11">Nov (11)</option>
+									<option value="12">Dec (12)</option>
+								</select>
+							</div>
+							<div class="three">
+								<label>Expiry Year</label>
+								<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+								<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+									<option value="">Year</option>
+								</select>
+							</div>
+							<div class="three">
+								<label>CVV</label>
+								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="one">
+								<p class="HideCvvExpiry message">
+									<b>Click Here</b> if you don't have CVV and Expiry
+								</p>
+								<p class="ShowCvvExpiry message">
+									<b>Click Here</b> if you have CVV and Expiry
+								</p>
+							</div>
+						</div>
+						<div class="row StoreCardRow">
+							<div class="one">
+								<div class="checkbox" data-callback="toggle_card_label"><span class="mark">✔</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
+								<div class="card_label">
+									<label>Card Label</label>
+									<input type="text" class="textbox" name="store_card_label" placeholder="Card Label" />
 								</div>
 							</div>
 						</div>
-					</div>
-					<p class="ErrorMessage">This is error message</p>
-					<div class="row">
-						<div class="one">
-							<label>Card&nbsp;Number</label>
-							<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number" />
-							<span class="icon"></span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<label>Name&nbsp;on&nbsp;Card</label>
-							<input type="text" class="textbox validate"  validate="name_on_card" name="name_on_card" placeholder="Name on Card" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="three">
-							<label>Expiry&nbsp;Month</label>
-							<div class="textbox ExpiryMonthLabel hidden">XX</div>
-							<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
-								<option value="">Month</option>
-								<option value="01">Jan (01)</option>
-								<option value="02">Feb (02)</option>
-								<option value="03">Mar (03)</option>
-								<option value="04">Apr (04)</option>
-								<option value="05">May (05)</option>
-								<option value="06">Jun (06)</option>
-								<option value="07">Jul (07)</option>
-								<option value="08">Aug (08)</option>
-								<option value="09">Sep (09)</option>
-								<option value="10">Oct (10)</option>
-								<option value="11">Nov (11)</option>
-								<option value="12">Dec (12)</option>
-							</select>
-						</div>
-						<div class="three">
-							<label>Expiry&nbsp;Year</label>
-							<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-							<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
-								<option value="">Year</option>
-							</select>
-						</div>
-						<div class="three">
-							<label>CVV</label>
-							<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<p class="HideCvvExpiry message">
-								<b>Click Here</b> if you don't have CVV and Expiry
-							</p>
-							<p class="ShowCvvExpiry message">
-								<b>Click Here</b> if you have CVV and Expiry
-							</p>
-						</div>
-					</div>
-					<div class="row StoreCardRow">
-						<div class="one">
-							<div class="checkbox" data-callback="toggle_card_label"><span class="mark">&#10004;</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
-							<div class="card_label">
-								<label>Card Label</label>
-								<input type="text" class="textbox" name="store_card_label" placeholder="Card Label" />
+						<div class="row">
+							<div class="one">
+								<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
 						</div>
 					</div>
 					<div class="row">
@@ -199,78 +217,79 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 				<div class="form" id="DebitCardForm">
 					<div class="row_new" id="StoredDebitCardContainer">
 						<div class="one">
-							<div class="drop_down"> <span>Select Saved Card</span>
-								<div class="dp_arrow"></div>
-								<div class="dp_content">
-									<ul id="StoredDebitCards">
-										<li class="sel" token="0">Select Saved Card</li>
-									</ul>
-								</div>
+							<label>Select Stored Card</label>
+							<ul id="StoredDebitCards" class="StoreCardUl">
+								<li class="use_new_card">
+									<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0" />
+									<div>Use New Card</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="new_card_form">
+						<p class="ErrorMessage">This is error message</p>
+						<div class="row">
+							<div class="one">
+								<label>Card Number</label>
+								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number" />
+								<span class="icon"></span>
 							</div>
 						</div>
-					</div>
-					<p class="ErrorMessage">This is error message</p>
-					<div class="row">
-						<div class="one">
-							<label>Card&nbsp;Number</label>
-							<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number" />
-							<span class="icon"></span>
+						<div class="row">
+							<div class="one">
+								<label>Name on Card</label>
+								<input type="text" class="textbox validate"  validate="name_on_card" name="name_on_card" placeholder="Name on Card" />
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<label>Name&nbsp;on&nbsp;Card</label>
-							<input type="text" class="textbox validate"  validate="name_on_card" name="name_on_card" placeholder="Name on Card" />
+						<div class="row">
+							<div class="three">
+								<label>Expiry Month</label>
+								<div class="textbox ExpiryMonthLabel hidden">XX</div>
+								<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+									<option value="">Month</option>
+									<option value="01">Jan (01)</option>
+									<option value="02">Feb (02)</option>
+									<option value="03">Mar (03)</option>
+									<option value="04">Apr (04)</option>
+									<option value="05">May (05)</option>
+									<option value="06">Jun (06)</option>
+									<option value="07">Jul (07)</option>
+									<option value="08">Aug (08)</option>
+									<option value="09">Sep (09)</option>
+									<option value="10">Oct (10)</option>
+									<option value="11">Nov (11)</option>
+									<option value="12">Dec (12)</option>
+								</select>
+							</div>
+							<div class="three">
+								<label>Expiry Year</label>
+								<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+								<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+									<option value="">Year</option>
+								</select>
+							</div>
+							<div class="three">
+								<label>CVV</label>
+								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="three">
-							<label>Expiry&nbsp;Month</label>
-							<div class="textbox ExpiryMonthLabel hidden">XX</div>
-							<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
-								<option value="">Month</option>
-								<option value="01">Jan (01)</option>
-								<option value="02">Feb (02)</option>
-								<option value="03">Mar (03)</option>
-								<option value="04">Apr (04)</option>
-								<option value="05">May (05)</option>
-								<option value="06">Jun (06)</option>
-								<option value="07">Jul (07)</option>
-								<option value="08">Aug (08)</option>
-								<option value="09">Sep (09)</option>
-								<option value="10">Oct (10)</option>
-								<option value="11">Nov (11)</option>
-								<option value="12">Dec (12)</option>
-							</select>
+						<div class="row">
+							<div class="one">
+								<p class="HideCvvExpiry message">
+									<b>Click Here</b> if you don't have CVV and Expiry
+								</p>
+								<p class="ShowCvvExpiry message">
+									<b>Click Here</b> if you have CVV and Expiry
+								</p>
+							</div>
 						</div>
-						<div class="three">
-							<label>Expiry&nbsp;Year</label>
-							<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-							<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
-								<option value="">Year</option>
-							</select>
-						</div>
-						<div class="three">
-							<label>CVV</label>
-							<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<p class="HideCvvExpiry message">
-								<b>Click Here</b> if you don't have CVV and Expiry
-							</p>
-							<p class="ShowCvvExpiry message">
-								<b>Click Here</b> if you have CVV and Expiry
-							</p>
-						</div>
-					</div>
-					<div class="row StoreCardRow">
-						<div class="one">
-							<div class="checkbox" data-callback="toggle_card_label"><span class="mark">&#10004;</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
-							<div class="card_label">
-								<label>Card Label</label>
-								<input type="text" class="textbox" name="store_card_label" placeholder="Card Label" />
+						<div class="row StoreCardRow">
+							<div class="one">
+								<div class="checkbox" data-callback="toggle_card_label"><span class="mark">✔</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
+								<div class="card_label">
+									<label>Card Label</label>
+									<input type="text" class="textbox" name="store_card_label" placeholder="Card Label" />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -290,7 +309,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 				<div class="form" id="EmiForm">
 					<div class="row">
 						<div class="one">
-							<label>Select&nbsp;Your&nbsp;Bank</label>
+							<label>Select Your Bank</label>
 							<select name="emi_bank" class="textbox validate" validate="emi_bank" id="EmiBankSelectBox">
 								<option value="">Select Your Bank</option>
 							</select>
@@ -298,7 +317,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 					</div>
 					<div class="row">
 						<div class="one">
-							<label>Select&nbsp;EMI&nbsp;Duration</label>
+							<label>Select EMI Duration</label>
 							<select name="emi_duration" disabled="disabled" class="textbox validate disable" validate="emi_duration" id="EmiDurationSelectBox">
 								<option value="">Select Duration</option>
 							</select>
@@ -322,69 +341,70 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 					<div id="EmiCardContainer" style="display:none;">
 						<div class="row_new" id="StoredEmiCardContainer">
 							<div class="one">
-								<div class="drop_down"> <span>Select Saved Card</span>
-									<div class="dp_arrow"></div>
-									<div class="dp_content">
-										<ul id="StoredEmiCards">
-											<li class="sel" token="0">Select Saved Card</li>
-										</ul>
-									</div>
+								<label>Select Stored Card</label>
+								<ul id="StoredEmiCards" class="StoreCardUl">
+									<li class="use_new_card">
+										<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0" />
+										<div>Use New Card</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="new_card_form">
+							<div class="row">
+								<div class="one">
+									<label>Card Number</label>
+									<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number" />
+									<span class="icon"></span>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<label>Card&nbsp;Number</label>
-								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number" />
-								<span class="icon"></span>
+							<div class="row">
+								<div class="one">
+									<label>Name on Card</label>
+									<input type="text" class="textbox validate"  validate="name_on_card" name="name_on_card" placeholder="Name on Card" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<label>Name&nbsp;on&nbsp;Card</label>
-								<input type="text" class="textbox validate"  validate="name_on_card" name="name_on_card" placeholder="Name on Card" />
+							<div class="row">
+								<div class="three">
+									<label>Expiry Month</label>
+									<div class="textbox ExpiryMonthLabel hidden">XX</div>
+									<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+										<option value="">Month</option>
+										<option value="01">Jan (01)</option>
+										<option value="02">Feb (02)</option>
+										<option value="03">Mar (03)</option>
+										<option value="04">Apr (04)</option>
+										<option value="05">May (05)</option>
+										<option value="06">Jun (06)</option>
+										<option value="07">Jul (07)</option>
+										<option value="08">Aug (08)</option>
+										<option value="09">Sep (09)</option>
+										<option value="10">Oct (10)</option>
+										<option value="11">Nov (11)</option>
+										<option value="12">Dec (12)</option>
+									</select>
+								</div>
+								<div class="three">
+									<label>Expiry Year</label>
+									<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+									<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+										<option value="">Year</option>
+									</select>
+								</div>
+								<div class="three">
+									<label>CVV</label>
+									<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="three">
-								<label>Expiry&nbsp;Month</label>
-								<div class="textbox ExpiryMonthLabel hidden">XX</div>
-								<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
-									<option value="">Month</option>
-									<option value="01">Jan (01)</option>
-									<option value="02">Feb (02)</option>
-									<option value="03">Mar (03)</option>
-									<option value="04">Apr (04)</option>
-									<option value="05">May (05)</option>
-									<option value="06">Jun (06)</option>
-									<option value="07">Jul (07)</option>
-									<option value="08">Aug (08)</option>
-									<option value="09">Sep (09)</option>
-									<option value="10">Oct (10)</option>
-									<option value="11">Nov (11)</option>
-									<option value="12">Dec (12)</option>
-								</select>
-							</div>
-							<div class="three">
-								<label>Expiry&nbsp;Year</label>
-								<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-								<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
-									<option value="">Year</option>
-								</select>
-							</div>
-							<div class="three">
-								<label>CVV</label>
-								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<p class="HideCvvExpiry message">
-									<b>Click Here</b> if you don't have CVV and Expiry
-								</p>
-								<p class="ShowCvvExpiry message">
-									<b>Click Here</b> if you have CVV and Expiry
-								</p>
+							<div class="row">
+								<div class="one">
+									<p class="HideCvvExpiry message">
+										<b>Click Here</b> if you don't have CVV and Expiry
+									</p>
+									<p class="ShowCvvExpiry message">
+										<b>Click Here</b> if you have CVV and Expiry
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -404,7 +424,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 				<div class="form" id="NetBankingForm">
 					<div class="row">
 						<div class="one">
-							<label>Select&nbsp;Your&nbsp;Bank</label>
+							<label>Select Your Bank</label>
 							<select name="net_banking" class="textbox validate" validate="net_banking" id="NetBankingSelectBox">
 								<option value="">Select Your Bank</option>
 							</select>
@@ -426,7 +446,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 				<div class="form" id="CashCardForm">
 					<div class="row">
 						<div class="one">
-							<label>Select&nbsp;Your&nbsp;Cash&nbsp;Card</label>
+							<label>Select Your Cash Card</label>
 							<select name="cash_card" class="textbox validate" validate="cash_card" id="CashCardSelectBox">
 								<option value="">Select Your Cash Card</option>
 							</select>
@@ -449,21 +469,21 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 				<div class="form" id="CodForm">
 					<div class="row">
 						<div class="two">
-							<label>First&nbsp;Name</label>
+							<label>First Name</label>
 							<input type="text" name="first_name" class="textbox validate" validate="name" placeholder="First Name" />
 						</div>
 						<div class="two">
-							<label>Last&nbsp;Name</label>
+							<label>Last Name</label>
 							<input type="text" name="last_name" class="textbox validate" validate="name" placeholder="Last Name" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="two">
-							<label>Address&nbsp;Line&nbsp;1</label>
+							<label>Address Line 1</label>
 							<input type="text" name="address_line_1" class="textbox validate" validate="address" placeholder="Address Line 1" />
 						</div>
 						<div class="two">
-							<label>Address&nbsp;Line&nbsp;2</label>
+							<label>Address Line 2</label>
 							<input type="text" name="address_line_2" class="textbox validate" validate="address" placeholder="Address Line 2" />
 						</div>
 					</div>
@@ -520,7 +540,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 							<input type="text" name="country" class="textbox validate" validate="name" placeholder="Country" />
 						</div>
 						<div class="two">
-							<label>Pin&nbsp;Code</label>
+							<label>Pin Code</label>
 							<input type="text" name="pin_code" class="textbox validate" validate="numbers" placeholder="Pin Code" />
 						</div>
 					</div>
@@ -530,8 +550,8 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 							<input type="text" name="mobile" class="textbox validate" validate="numbers" placeholder="Mobile" />
 						</div>
 						<div class="two">
-							<label>Verify&nbsp;Yourself</label>
-							<input type="text" name="captcha_text" class="textbox captcha validate" validate="captcha" /><div id="CaptchaDiv"><span></span><a href="javascript:void(0);">&#8635;</a></div>
+							<label>Verify Yourself</label>
+							<input type="text" name="captcha_text" class="textbox captcha validate" validate="captcha" /><div id="CaptchaDiv"><span></span><a href="javascript:void(0);">↻</a></div>
 						</div>
 					</div>
 					<div class="row">
@@ -593,6 +613,33 @@ var SbiBinList = ["504435","504645","504774","504775","504809","504993","600206"
 var CurrentCapta = null;
 FormError = false;
 $(document).ready(function(){
+	$(".store_card_radio").live("click", function(e){
+		var ct = $(this).attr('token');
+		var Form = $(this).parents(".form");
+		var Cat = $("#Category").val();
+		Form.find(".ShowCvvExpiry, .HideCvvExpiry");
+		Form.find('input, select').removeClass("error");
+		$("#StoredCard").val(false).removeAttr("token");
+		if(ct != '0'){
+			var CurrentCard = StoredCards[ct];
+			Form.find('input, select').not('.store_card_cvv').removeClass("validate");
+			Form.find(".store_card_cvv").addClass('validate');
+			Form.find(".new_card_form").fadeOut('fast');
+			if(CurrentCard.card_brand == "MAESTRO"){
+				//Form.find('.store_card_cvv').removeClass("validate");
+			}else{
+				//Form.find('.store_card_cvv').addClass("validate");
+			}
+			$("#StoredCard").val(true).attr("token", CurrentCard.card_token);
+			if(Cat != 'emi'){
+				$("#IbiboCode").val(CurrentCard.card_type);
+			}
+		}else{
+			Form.find('input, select').not('.store_card_cvv').addClass("validate");
+			Form.find(".store_card_cvv").removeClass('validate');
+			Form.find(".new_card_form").fadeIn('fast');
+		}
+	});
 	$("#secure_logo a").click(function(){
 		top[0].open($(this).attr("url"), "_blank","toolbar=0,scrollbars=1,resizable=1,width=550,height=500");
 		return false;
@@ -617,31 +664,91 @@ $(document).ready(function(){
 		return false;
 	});
 	if(StoredCards != null && !$.isEmptyObject(StoredCards)){
+		var ccHTML = "";
+		var dcHTML = "";
+		var html = $("#StoreCardLiTemplate").html();
 		$.each(StoredCards, function(Token, CardObj){
+			var fr = {
+				find:['{{token}}', '{{brand}}', '{{card_name}}', '{{card_number}}', '{{cvv_max}}', '{{cvv_validate}}'],
+				replace_all:[CardObj.card_token, CardObj.card_brand.toLowerCase(), CardObj.card_name, CardObj.card_no, 3, 'cvv'],
+				replace_amex:[CardObj.card_token, CardObj.card_brand.toLowerCase(), CardObj.card_name, CardObj.card_no, 4, 'cvv4']
+			}
 			if(CardObj.card_mode == 'CC'){
 				StoredCardCC++;
-				$("#StoredCreditCards").append('<li token="'+Token+'">'+CardObj.card_name+'</li>');
-				$("#StoredEmiCards").append('<li token="'+Token+'">'+CardObj.card_name+'</li>');
+				if(CardObj.card_brand == 'AMEX'){
+					ccHTML += html.replaceArray(fr.find, fr.replace_amex);
+				}else{
+					ccHTML += html.replaceArray(fr.find, fr.replace_all);
+				}
 			}else if(CardObj.card_mode == 'DC'){
 				StoredCardDC++;
-				$("#StoredDebitCards").append('<li token="'+Token+'">'+CardObj.card_name+'</li>');
+				if(CardObj.card_brand == 'AMEX'){
+					dcHTML += html.replaceArray(fr.find, fr.replace_amex);
+				}else{
+					dcHTML += html.replaceArray(fr.find, fr.replace_all);
+				}
 			}
 		});
 	}
 	if(StoredCardCC > 0){
+		$("#StoredCreditCards").prepend(ccHTML);
+		$("#StoredEmiCards").prepend(ccHTML);
 		$("#StoredCreditCardContainer").show();
 		$("#StoredEmiCardContainer").show();	
+	}else{
+		$("#CreditCardForm .new_card_form").show();
+		$("#EmiForm .new_card_form").show();
 	}
 	if(StoredCardDC > 0){
+		$("#StoredDebitCards").prepend(dcHTML);
 		$("#StoredDebitCardContainer").show();
+	}else{
+		$("#DebitCardForm .new_card_form").show();
 	}
 	if(StoredCards === null){
 		$(".StoreCardRow").hide();
 		$("#StoredCreditCardContainer").hide();
 		$("#StoredEmiCardContainer").hide();
 		$("#StoredDebitCardContainer").hide();
+		$(".new_card_form").show();
 		
 	}
+	
+	$(".remove_store_card").live("click", function(){
+		var con = confirm("Are you sure want to delete this card?");
+		if(!con){
+			return false;
+		}
+		var Form = $(this).parents('.form');
+		var token = $(this).attr('token');
+		var Cat = $("#Category").val();
+		var CurrCard = StoredCards[token];
+		if(token != '0'){
+			PayU.removeUserCard(token, function (data) {
+				result = jQuery.parseJSON(data);
+		   		if(result['result'] === "Card deleted") {
+					Form.find("li[token='"+token+"']").remove();
+					if(CurrCard.card_type == 'CC' && Cat == 'creditcard'){
+						$("#EmiForm li[token='"+token+"']").remove();
+					}else if(CurrCard.card_type == 'CC' && Cat == 'emi'){
+						$("#CreditCardForm li[token='"+token+"']").remove();
+					}
+					delete StoredCards[token];
+					if(Form.find(".store_card_selector").length == 0){
+						Form.find(".StoreCardUl").hide();
+						Form.find(".new_card_form").show();
+						if(CurrCard.card_type == 'CC' && Cat == 'creditcard'){
+							$("#EmiForm .StoreCardUl").hide();
+							$("EmiForm .new_card_form").show();
+						}else if(CurrCard.card_type == 'CC' && Cat == 'emi'){
+							$("#CreditCardForm .StoreCardUl").hide();
+							$("CreditCardForm .new_card_form").show();
+						}
+					}
+		   		}
+			});
+		}
+	});
 	$.each(PayU.getIbiboCodes(), function(Opt, OptObj){
 		$("." + Opt).show();
 	});
@@ -706,43 +813,6 @@ $(document).ready(function(){
 				ExpMonth.removeClass('error');
 				ExpYear.removeClass('error');
 			}
-		}
-	});
-
-	$("#StoredCreditCards li, #StoredDebitCards li, #StoredEmiCards li").click(function(){
-		var ParentElement = $(this).parents(".form");
-		if($(this).attr("token") != '0'){
-			var CurrentCard = StoredCards[$(this).attr("token")];
-			ParentElement.find("input[name='cvv']").removeClass("error");
-			ParentElement.find("input[name='card_number']").val(CurrentCard.card_no).attr("readonly", true).removeClass("validate error").next(".icon").removeClass("mastercard visa maestro diners amex").addClass(CurrentCard.card_brand.toLowerCase());
-			ParentElement.find("input[name='name_on_card']").val(CurrentCard.name_on_card).attr("readonly", true).removeClass("validate error");
-			ParentElement.find('select.ExpiryMonth, select.ExpiryYear').hide().removeClass('validate error');
-			ParentElement.find(".ExpiryYearLabel, .ExpiryMonthLabel").show();
-			ParentElement.find(".StoreCardRow").hide();
-			$("#StoredCard").val("true").attr("token", $(this).attr("token"));
-			if(CurrentCard.card_brand == "MAESTRO"){
-				if(!ParentElement.find('.ShowCvvExpiry').is(":visible")){
-					ParentElement.find('.HideCvvExpiry').show();
-				}
-			}else{
-				ParentElement.find(".ShowCvvExpiry, .HideCvvExpiry").hide();
-			}
-			if(CurrentCard.card_brand == "AMEX"){
-				ParentElement.find("input[name='cvv']").val("").removeClass("error").attr("maxlength", "4").addClass("validate").attr("validate", "cvv4");
-			}else{
-				ParentElement.find("input[name='cvv']").val("").removeClass("error").attr("maxlength", "3").addClass("validate").attr("validate", "cvv");
-			}
-			$("#IbiboCode").val(CurrentCard.card_type);
-		}else{
-			ParentElement.find("input[name='card_number']").val("").attr("readonly", false).removeClass("error").addClass("validate").next(".icon").removeClass("mastercard visa maestro diners amex");
-			ParentElement.find("input[name='name_on_card']").val("").attr("readonly", false).removeClass("error").addClass("validate");
-			ParentElement.find('select.ExpiryMonth, select.ExpiryYear').show().addClass('validate').removeClass("error disable").val("").attr("disabled", false);
-			ParentElement.find(".ExpiryYearLabel, .ExpiryMonthLabel").hide();
-			ParentElement.find(".StoreCardRow").show();
-			ParentElement.find(".ShowCvvExpiry, .HideCvvExpiry").hide();
-			ParentElement.find("input[name='cvv']").val("").removeClass("error disable").attr("maxlength", "3").addClass("validate").attr("validate", "cvv").attr("disabled", false);
-			ParentElement.find(".ShowCvvExpiry, .HideCvvExpiry");
-			$("#StoredCard").val("false").removeAttr("token");
 		}
 	});
 	
@@ -852,15 +922,6 @@ var ResetAll = function(){
 	$("#EmiDurationSelectBox").html('<option value="">Select Duration</option>').attr("disabled", true).addClass("disable");
 	$(".HideCvvExpiry, .ShowCvvExpiry").hide();
 	$(".ErrorMessage").text("").hide();
-	$("#StoredCreditCardContainer .drop_down span").text("Select Saved Card");
-	$("#StoredCreditCards li").removeClass("sel");
-	$("#StoredCreditCards li:first").addClass("sel");
-	$("#StoredDebitCardContainer .drop_down span").text("Select Saved Card");
-	$("#StoredDebitCards li").removeClass("sel");
-	$("#StoredDebitCards li:first").addClass("sel");
-	$("#StoredEmiCardContainer .drop_down span").text("Select Saved Card");
-	$("#StoredEmiCards li").removeClass("sel");
-	$("#StoredEmiCards li:first").addClass("sel");
 	$("#StoredCard").val('false').removeAttr('token');
 }
 
@@ -946,7 +1007,8 @@ $.fn.validate = function(){
 					PayU.setStoreCard("true", FormData.store_card_label);
 				}
 				if($("#StoredCard").val() == 'true'){
-					 PayU.setCardToken($("#StoredCard").attr("token"))
+					 PayU.setCardToken($("#StoredCard").attr("token"));
+					 FormData.cvv = FormData.s_cvv;
 				}
 				PayU.setCardDetails(FormData.card_number, FormData.cvv, FormData.name_on_card, FormData.expiry_month, FormData.expiry_year);
 				if($("#Category").val() == 'cod'){
@@ -1028,7 +1090,7 @@ $.fn.validate = function(){
 					Element.parents(".form").find('input[name="cvv"]').attr('maxlength', '3').attr('validate', 'cvv');
 				}
 				
-				if(typeof PayU.getIbiboCodes()['creditcard'][$("#IbiboCode").val()] == "undefined" && typeof PayU.getIbiboCodes()['debitcard'][$("#IbiboCode").val()] == "undefined"){
+				if($("#Category").val() != "emi" && typeof PayU.getIbiboCodes()['creditcard'][$("#IbiboCode").val()] == "undefined" && typeof PayU.getIbiboCodes()['debitcard'][$("#IbiboCode").val()] == "undefined"){
 					Element.parents(".form").find(".ErrorMessage").text("This card not supported by merchant").show();
 					Element.addClass('error');
 					ReturnFlag = false;
@@ -1100,5 +1162,22 @@ $.fn.serializeObject = function () {
     });
     return e
 };
+String.prototype.replaceArray = function(find, replace) {
+  var replaceString = this;
+  for (var i = 0; i < find.length; i++) {
+	var regex = new RegExp(find[i], "g");
+    replaceString = replaceString.replace(regex, replace[i]);
+  }
+  return replaceString;
+};
 </script>
+<div id="StoreCardLiTemplate" style="display:none;">
+	<li class="store_card_selector" token="{{token}}">	
+		<input type="radio" name="store_card_radio" token="{{token}}" class="radio store_card_radio">
+		<div class="store_card_icon"><span class="{{brand}}"></span></div>
+		<div class="store_card_label">{{card_name}}<span>{{card_number}}</span></div>
+		<div class="cvv_div"><input name="s_cvv" type="password" maxlength="{{cvv_max}}" class="textbox store_card_cvv validate" validate="{{cvv_validate}}" placeholder="CVV"></div>
+		<a href="javascript:void(0);" class="remove_store_card" token="{{token}}">Delete This Card</a>
+	</li>
+</div>
 </html>
