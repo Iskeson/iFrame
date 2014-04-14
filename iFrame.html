@@ -616,14 +616,15 @@ $(document).ready(function(){
 	$(".store_card_radio").live("click", function(e){
 		var ct = $(this).attr('token');
 		var Form = $(this).parents(".form");
+		var SelectedCard = $(this).parents('.store_card_selector');
 		var Cat = $("#Category").val();
 		Form.find(".ShowCvvExpiry, .HideCvvExpiry");
 		Form.find('input, select').removeClass("error");
 		$("#StoredCard").val(false).removeAttr("token");
 		if(ct != '0'){
 			var CurrentCard = StoredCards[ct];
-			Form.find('input, select').not('.store_card_cvv').removeClass("validate");
-			Form.find(".store_card_cvv").addClass('validate');
+			Form.find('input, select').removeClass("validate");
+			SelectedCard.find(".store_card_cvv").addClass('validate');
 			Form.find(".new_card_form").fadeOut('fast');
 			if(CurrentCard.card_brand == "MAESTRO"){
 				//Form.find('.store_card_cvv').removeClass("validate");
