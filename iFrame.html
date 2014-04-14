@@ -624,7 +624,8 @@ $(document).ready(function(){
 		if(ct != '0'){
 			var CurrentCard = StoredCards[ct];
 			Form.find('input, select').removeClass("validate");
-			SelectedCard.find(".store_card_cvv").addClass('validate');
+			Form.find('.store_card_cvv').removeAttr('name');
+			SelectedCard.find(".store_card_cvv").addClass('validate').attr('name', 's_cvv');
 			Form.find(".new_card_form").fadeOut('fast');
 			if(CurrentCard.card_brand == "MAESTRO"){
 				//Form.find('.store_card_cvv').removeClass("validate");
