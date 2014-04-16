@@ -100,6 +100,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 .StoreCardUl div .textbox{padding:8px;border:1px solid #AAA;font-size:14px;width:50px;}
 .StoreCardUl .remove_store_card{margin-top:3px;float:right;padding:5px 5px 5px 25px;background:url(https://static.payu.in/images/mobile_default/icons/error_icon.png) no-repeat 4px center;border:1px solid #DDD;}
 .StoreCardUl .remove_store_card:hover{background-color:#EEE;}
+.StoreCardUl .cvv_optional{display:none;font-size:10px;margin-left:5px;}
 .new_card_form{display:none;}
 </style>
 </head>
@@ -629,8 +630,10 @@ $(document).ready(function(){
 			Form.find(".new_card_form").fadeOut('fast');
 			if(CurrentCard.card_brand == "MAESTRO"){
 				SelectedCard.find('.store_card_cvv').removeClass("validate");
+				SelectedCard.find('.cvv_optional').css('display', 'block');
 			}else{
 				SelectedCard.find('.store_card_cvv').addClass("validate");
+				SelectedCard.find('.cvv_optional').css('display', 'none');
 			}
 			$("#StoredCard").val(true).attr("token", CurrentCard.card_token);
 			if(Cat != 'emi'){
@@ -1178,7 +1181,9 @@ String.prototype.replaceArray = function(find, replace) {
 		<input type="radio" name="store_card_radio" token="{{token}}" class="radio store_card_radio">
 		<div class="store_card_icon"><span class="{{brand}}"></span></div>
 		<div class="store_card_label">{{card_name}}<span>{{card_number}}</span></div>
-		<div class="cvv_div"><input name="s_cvv" type="password" maxlength="{{cvv_max}}" class="textbox store_card_cvv validate" validate="{{cvv_validate}}" placeholder="CVV"></div>
+		<div class="cvv_div"><input name="s_cvv" type="password" maxlength="{{cvv_max}}" class="textbox store_card_cvv validate" validate="{{cvv_validate}}" placeholder="CVV">
+			<span class="cvv_optional">Optional</span>
+		</div>
 		<a href="javascript:void(0);" class="remove_store_card" token="{{token}}">Delete This Card</a>
 	</li>
 </div>
