@@ -750,6 +750,8 @@ $(document).ready(function(){
 							$("#CreditCardForm #StoredCreditCardContainer").hide();
 							$("#CreditCardForm .new_card_form").show();
 						}
+						$("#StoredCard").val('false').removeAttr('token');
+						Form.find(".new_card_form input, .new_card_form select").not('.card_label input').addClass('validate');
 					}
 		   		}
 			});
