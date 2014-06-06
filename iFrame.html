@@ -732,7 +732,7 @@ $(document).ready(function(){
 			PayU.removeUserCard(token, function (data) {
 				result = jQuery.parseJSON(data);
 		   		if(result['result'] === "Card deleted") {
-					Form.find("li[token='"+token+"']").remove();
+		   			Form.find("li[token='"+token+"']").remove();
 					if(CurrCard.card_type == 'CC' && Cat == 'creditcard'){
 						$("#EmiForm li[token='"+token+"']").remove();
 					}else if(CurrCard.card_type == 'CC' && Cat == 'emi'){
@@ -740,18 +740,20 @@ $(document).ready(function(){
 					}
 					delete StoredCards[token];
 					if(Form.find(".store_card_selector").length == 0){
-						Form.find(".StoreCardUl").hide();
+						Form.find(".store_card_cvv").removeClass('validate');
+						Form.find("#StoredCreditCardContainer").hide();
 						Form.find(".new_card_form").show();
 						if(CurrCard.card_type == 'CC' && Cat == 'creditcard'){
-							$("#EmiForm .StoreCardUl").hide();
-							$("EmiForm .new_card_form").show();
+							$("#EmiForm #StoredEmiCardContainer").hide();
+							$("#EmiForm .new_card_form").show();
 						}else if(CurrCard.card_type == 'CC' && Cat == 'emi'){
-							$("#CreditCardForm .StoreCardUl").hide();
-							$("CreditCardForm .new_card_form").show();
+							$("#CreditCardForm #StoredCreditCardContainer").hide();
+							$("#CreditCardForm .new_card_form").show();
 						}
 					}
 		   		}
 			});
+			
 		}
 	});
 	$.each(PayU.getIbiboCodes(), function(Opt, OptObj){
@@ -979,6 +981,7 @@ $.fn.validate = function(){
 	var Elements = $(this).find('.validate');
 	var FormObj = $(this);
 	FormObj.find("input[type='submit']").click(function(){
+		var Elements = FormObj.find('.validate');
 		return validateAll(Elements);
 	});
 	Elements.keyup(function(){
