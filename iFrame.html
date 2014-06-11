@@ -640,7 +640,8 @@ $(document).ready(function(){
 				$("#IbiboCode").val(CurrentCard.card_type);
 			}
 		}else{
-			Form.find('input, select').not('.store_card_cvv').addClass("validate");
+			Form.find("input[type='text'], select").not('.store_card_cvv').addClass("validate");
+			Form.find('.card_label input').removeClass('validate');
 			Form.find(".store_card_cvv").removeClass('validate');
 			Form.find(".new_card_form").fadeIn('fast');
 		}
@@ -751,7 +752,8 @@ $(document).ready(function(){
 							$("#CreditCardForm .new_card_form").show();
 						}
 						$("#StoredCard").val('false').removeAttr('token');
-						Form.find(".new_card_form input, .new_card_form select").not('.card_label input').addClass('validate');
+						Form.find(".new_card_form input[type='text'], .new_card_form select").addClass('validate');
+						Form.find('.card_label input').removeClass('validate');
 					}
 		   		}
 			});
