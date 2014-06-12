@@ -197,7 +197,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 								<div class="checkbox" data-callback="toggle_card_label"><span class="mark">✔</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
 								<div class="card_label">
 									<label>Card Label</label>
-									<input type="text" class="textbox" name="store_card_label" placeholder="Card Label" />
+									<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label" />
 								</div>
 							</div>
 						</div>
@@ -289,7 +289,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 								<div class="checkbox" data-callback="toggle_card_label"><span class="mark">✔</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
 								<div class="card_label">
 									<label>Card Label</label>
-									<input type="text" class="textbox" name="store_card_label" placeholder="Card Label" />
+									<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label" />
 								</div>
 							</div>
 						</div>
@@ -605,7 +605,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 </body>
 <script type="text/javascript">
 var date = new Date();
-var VaidationRegex = {numbers:/^[0-9]+$/i,address:/^[a-z0-9\.\-\/ ]+$/i,name:/^[a-z ]+$/i,name_on_card: /^[a-z0-9\.\- ]+$/i,card_number: /^\d+$/,cvv: /^(?!000)\d{3}$/,cvv4: /^(?!000)\d{4}$/};
+var VaidationRegex = {numbers:/^[0-9]+$/i,address:/^[a-z0-9\.\-\/ ]+$/i,name:/^[a-z ]+$/i,name_on_card: /^[a-z0-9\.\- ]+$/i,card_number: /^\d+$/,cvv: /^(?!000)\d{3}$/,cvv4: /^(?!000)\d{4}$/, card_label:/^[a-z]*[0-9]{1,4}[a-z]*$|^[a-z]*$/};
 var CardTypes = [{name: "amex",pattern: /^(34|37)/,valid_length: [15],ibibocode: "AMEX"}, {name: "diners",pattern: /^(30|36|38)/,valid_length: [14],ibibocode: "DINR"}, {name: "visa",pattern: /^4/,valid_length: [16],ibibocode: "VISA"}, {name: "mastercard",pattern: /^5[1-5]/,valid_length: [16],ibibocode: "MAST"}, {name: "maestro",pattern: /^(50|63|66|5[6-8]|6[8-9]|600[0-9]|6010|601[2-9]|60[2-9]|61|620|621|6220|6221[0-1])/,valid_length: [12, 13, 14, 15, 16, 17, 18, 19],ibibocode: "MAES"}];
 var StoredCards = PayU.getUserCards();
 var StoredCardCC = 0;
@@ -641,7 +641,6 @@ $(document).ready(function(){
 			}
 		}else{
 			Form.find("input[type='text'], select").not('.store_card_cvv').addClass("validate");
-			Form.find('.card_label input').removeClass('validate');
 			Form.find(".store_card_cvv").removeClass('validate');
 			Form.find(".new_card_form").fadeIn('fast');
 		}
@@ -753,7 +752,6 @@ $(document).ready(function(){
 						}
 						$("#StoredCard").val('false').removeAttr('token');
 						Form.find(".new_card_form input[type='text'], .new_card_form select").addClass('validate');
-						Form.find('.card_label input').removeClass('validate');
 					}
 		   		}
 			});
@@ -1050,7 +1048,7 @@ $.fn.validate = function(){
 		}
 		Element.removeClass('error');
 		var ReturnFlag = true;
-		if((Flag == 'submit' || Flag == 'blur') && Element.val() == '' && Flag != ''){
+		if((Flag == 'submit' || Flag == 'blur') && FieldType != 'card_label' && Element.val() == '' && Flag != ''){
 			Element.addClass('error').next('.icon').removeClass('mastercard visa maestro diners amex');
 			ReturnFlag = false;
 		}
@@ -1058,6 +1056,7 @@ $.fn.validate = function(){
 		if(FieldType == "card_number" && Element.val() == ""){
 			Element.parents(".form").find(".ErrorMessage").text("").hide();
 		}
+		
 		if(FieldType == 'card_number' && Element.val() != ''){
 			var CardObject = GetCardType(Element.val());
 			$("#Category").val($("#tabs li.sel a").attr('category'));
