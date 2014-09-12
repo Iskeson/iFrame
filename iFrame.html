@@ -326,7 +326,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 					</div>
 					<div class="row" style="display:none;">
 						<div class="one">
-							<p class="message">Your monthly EMI payment will be <b>Rs. <span class="EmiAmount">1.67</span>/month</b> for the next <b><span class="EmiMonths">6 Months</span></b>.</p>
+							<p class="message EmiBankChargesMessage"></p>
 						</div>
 					</div>
 					<div class="row" style="display:none;">
@@ -336,7 +336,7 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 					</div>
 					<div class="row" style="display:none;">
 						<div class="one">
-							<p class="message EmiBankChargesMessage"></p>
+							<p class="message">Indicative EMI is <b>Rs. <span class="EmiAmount">1.67</span></b> and indicative total interest paid will be <b>Rs. <span class="EmiInterest"></span></b>. Taxes applicable on interest paid to bank.</p>
 						</div>
 					</div>
 					<div id="EmiCardContainer" style="display:none;">
@@ -861,7 +861,7 @@ $(document).ready(function(){
 		$("#EmiCardContainer").slideUp('fast');
 		$(".EmiBankChargesMessage").html("").parents(".row").hide();
 		$(".EmiBankInterestMessage").html("").parents(".row").hide();
-		$(".EmiMonths").parents('.row').hide();
+		$(".EmiInterest").parents('.row').hide();
 		$("#EmiDurationSelectBox").html('<option value="">Select Duration</option>');
 		if($(this).val() != ""){
 			$.each(EmiData[$(this).val()].sort(sort_by('title', true)), function(ind, obj){
@@ -884,18 +884,20 @@ $(document).ready(function(){
 				$(".EmiBankChargesMessage").html("").parents(".row").hide();
 			}
 			if(EmiCharges.emiBankInterest != null){
-				$(".EmiBankInterestMessage").html('An additional charge at the rate of '+EmiCharges.emiBankInterest+'% per annum would be charged on your credit card. This will be calculated on the basis of your EMI tenure.').parents(".row").show();
+				$(".EmiBankInterestMessage").html('An additional charge at the rate of '+EmiCharges.emiBankInterest+'% per annum would be charged on your credit card.').parents(".row").show();
+				$(".EmiAmount").text(EmiCharges.emi_value);
+				$(".EmiInterest").text(EmiCharges.emi_interest_paid).parents('.row').fadeIn('fast');
 			}else{
 				$(".EmiBankInterestMessage").html("").parents(".row").hide();
-				$(".EmiAmount").text(EmiCharges.amount);
-				$(".EmiMonths").text($("#EmiDurationSelectBox option:selected").text()).parents('.row').fadeIn('fast');
+				$(".EmiAmount").text(EmiCharges.emi_value);
+				$(".EmiInterest").text(EmiCharges.emi_interest_paid).parents('.row').fadeIn('fast');
 			}
 			$("#IbiboCode").val($(this).val());
 		}else{
 			$("#EmiCardContainer").slideUp('fast');
 			$(".EmiBankChargesMessage").html("").parents(".row").hide();
 			$(".EmiBankInterestMessage").html("").parents(".row").hide();
-			$(".EmiMonths").parents('.row').fadeIn('fast');
+			$(".EmiInterest").parents('.row').fadeIn('fast');
 		}
 	});
 
