@@ -891,7 +891,7 @@ $(document).ready(function(){
 			if(EmiCharges.emiBankInterest != null){
 				$(".EmiBankInterestMessage").html('An additional charge at the rate of '+EmiCharges.emiBankInterest+'% per annum would be charged on your credit card.').parents(".row").show();
 				$(".EmiAmount").text(EmiCharges.emi_value);
-				$(".EmiInterest").text(EmiCharges.emi_interest_paid).parents('.row').fadeIn('fast');
+				$(".EmiInterest").text(parseFloat(EmiCharges.emi_interest_paid).toFixed(2)).parents('.row').fadeIn('fast');
 				$(".EmiAmount2").parents(".row").hide();
 			}else{
 				$(".EmiBankInterestMessage").html("").parents(".row").hide();
