@@ -339,6 +339,11 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 							<p class="message">Indicative EMI is <b>Rs. <span class="EmiAmount">1.67</span></b> and indicative total interest paid will be <b>Rs. <span class="EmiInterest"></span></b>. Taxes applicable on interest paid to bank.</p>
 						</div>
 					</div>
+					<div class="row" style="display:none;">
+						<div class="one">
+							<p class="message">Your monthly EMI payment will be <b>Rs. <span class="EmiAmount2">1.67</span></b>/month for the next <b>Rs. <span class="EmiTitle2"></span></b>.</p>
+						</div>
+					</div>
 					<div id="EmiCardContainer" style="display:none;">
 						<div class="row_new" id="StoredEmiCardContainer">
 							<div class="one">
@@ -887,17 +892,20 @@ $(document).ready(function(){
 				$(".EmiBankInterestMessage").html('An additional charge at the rate of '+EmiCharges.emiBankInterest+'% per annum would be charged on your credit card.').parents(".row").show();
 				$(".EmiAmount").text(EmiCharges.emi_value);
 				$(".EmiInterest").text(EmiCharges.emi_interest_paid).parents('.row').fadeIn('fast');
+				$(".EmiAmount2").parents(".row").hide();
 			}else{
 				$(".EmiBankInterestMessage").html("").parents(".row").hide();
-				$(".EmiAmount").text(EmiCharges.emi_value);
-				$(".EmiInterest").text(EmiCharges.emi_interest_paid).parents('.row').fadeIn('fast');
+				$(".EmiAmount").parents(".row").hide();
+				$(".EmiAmount2").text(EmiCharges.amount);
+				$(".EmiTitle2").text($(this).find("option:selected").text()).parents('.row').fadeIn('fast');
 			}
 			$("#IbiboCode").val($(this).val());
 		}else{
 			$("#EmiCardContainer").slideUp('fast');
 			$(".EmiBankChargesMessage").html("").parents(".row").hide();
 			$(".EmiBankInterestMessage").html("").parents(".row").hide();
-			$(".EmiInterest").parents('.row').fadeIn('fast');
+			$(".EmiAmount").parents('.row').hide();
+			$(".EmiAmount2").parents('.row').hide();
 		}
 	});
 
