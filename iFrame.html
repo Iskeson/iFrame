@@ -867,6 +867,7 @@ $(document).ready(function(){
 		$(".EmiBankChargesMessage").html("").parents(".row").hide();
 		$(".EmiBankInterestMessage").html("").parents(".row").hide();
 		$(".EmiInterest").parents('.row').hide();
+		$(".EmiAmount2").parents('.row').hide();
 		$("#EmiDurationSelectBox").html('<option value="">Select Duration</option>');
 		if($(this).val() != ""){
 			$.each(EmiData[$(this).val()].sort(sort_by('title', true)), function(ind, obj){
@@ -888,7 +889,7 @@ $(document).ready(function(){
 			}else{
 				$(".EmiBankChargesMessage").html("").parents(".row").hide();
 			}
-			if(EmiCharges.emiBankInterest != null){
+			if(EmiCharges.emiBankInterest != null && parseInt(EmiCharges.emiBankInterest) > 0){
 				$(".EmiBankInterestMessage").html('An additional charge at the rate of '+EmiCharges.emiBankInterest+'% per annum would be charged on your credit card.').parents(".row").show();
 				$(".EmiAmount").text(EmiCharges.emi_value);
 				$(".EmiInterest").text(parseFloat(EmiCharges.emi_interest_paid).toFixed(2)).parents('.row').fadeIn('fast');
