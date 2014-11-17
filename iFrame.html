@@ -18,8 +18,8 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 #tabs li.sel .white{display:block;}
 #CardConatiner{float:right;width:70%;border-left:1px solid #AAA;padding:10px 10px 10px 20px;}
 #CardConatiner .page{margin-top:10px;display:none;min-height:315px;}
-#CardConatiner .page .form{padding:10px;overflow:auto;}
-#CardConatiner .page .form .row{width:100%;margin:5px 0 15px 0;overflow:auto;}
+#CardConatiner .page .form{padding:10px;clear:both;}
+#CardConatiner .page .form .row{width:100%;margin:5px 0 15px 0;clear:both;}
 #CardConatiner .page .form .row .one{position:relative;}
 #CardConatiner .page .form .row .textbox{width:96.5%;padding:5px;font-size:14px;border:1px solid #AAA;height:30px;}
 #CardConatiner .page .form .row .textbox:hover, #CardConatiner .page .form .row .textbox:focus{border-color:#3d3d3d;}
@@ -102,6 +102,14 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 .StoreCardUl .remove_store_card:hover{background-color:#EEE;}
 .StoreCardUl .cvv_optional{display:none;font-size:10px;margin-left:5px;}
 .new_card_form{display:none;}
+.cvv .hlp{display:inline-block;position:relative;}
+.cvv .hlp span{display:block;border-radius:50%;width:30px;height:30px;background:#17ae03;color:#FFF;cursor:pointer;}
+.cvv .hlp:hover span{background:#1CCA05;}
+.cvv .hlp span i{font-style:normal;font-weight:bold;color:#FFF;padding:7px 11px;display:block;}
+.cvv .hlp .info{position:absolute;right:0px;top:35px;z-index:999;padding:5px;background:#FFF;border:1px solid #DDD;display:none;}
+.cvv .hlp .info p{font-size:10px;margin:0;padding:0;}
+.cvv .hlp .info .amex{display:none;}
+.cvv .hlp:hover .info{display:block;}
 </style>
 </head>
 <body>
@@ -177,9 +185,22 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 									<option value="">Year</option>
 								</select>
 							</div>
-							<div class="three">
+							<div class="three cvv">
 								<label>CVV</label>
 								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
+								<div class="hlp">
+									<span title="What is CVV?"><i>?</i></span>
+									<div class="info">
+										<div class="amex">
+											<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png" />
+											<p>A 4-digit number on the front, just above on your credit card number.</p>
+										</div>
+										<div class="other">
+											<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png" />
+											<p>A 3-digit number is reverse italics on the back of your card.</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -269,9 +290,22 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 									<option value="">Year</option>
 								</select>
 							</div>
-							<div class="three">
+							<div class="three cvv">
 								<label>CVV</label>
 								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
+								<div class="hlp">
+									<span title="What is CVV?"><i>?</i></span>
+									<div class="info">
+										<div class="amex">
+											<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png" />
+											<p>A 4-digit number on the front, just above on your credit card number.</p>
+										</div>
+										<div class="other">
+											<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png" />
+											<p>A 3-digit number is reverse italics on the back of your card.</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -397,9 +431,22 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 										<option value="">Year</option>
 									</select>
 								</div>
-								<div class="three">
+								<div class="three cvv">
 									<label>CVV</label>
 									<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv" />
+									<div class="hlp">
+										<span title="What is CVV?"><i>?</i></span>
+										<div class="info">
+											<div class="amex">
+												<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png" />
+												<p>A 4-digit number on the front, just above on your credit card number.</p>
+											</div>
+											<div class="other">
+												<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png" />
+												<p>A 3-digit number is reverse italics on the back of your card.</p>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -640,6 +687,13 @@ $(document).ready(function(){
 				SelectedCard.find('.store_card_cvv').addClass("validate");
 				SelectedCard.find('.cvv_optional').css('display', 'none');
 			}
+			if(CurrentCard.card_brand == "AMEX"){
+				$(".cvv .hlp .info .other").hide();
+				$(".cvv .hlp .info .amex").show();
+			}else{
+				$(".cvv .hlp .info .amex").hide();
+				$(".cvv .hlp .info .other").show();
+			}
 			$("#StoredCard").val(true).attr("token", CurrentCard.card_token);
 			if(Cat != 'emi'){
 				$("#IbiboCode").val(CurrentCard.card_type);
@@ -648,6 +702,8 @@ $(document).ready(function(){
 			Form.find("input[type='text'], select").not('.store_card_cvv').addClass("validate");
 			Form.find(".store_card_cvv").removeClass('validate');
 			Form.find(".new_card_form").fadeIn('fast');
+			$(".cvv .hlp .info .amex").hide();
+			$(".cvv .hlp .info .other").show();
 		}
 	});
 	$("#secure_logo a").click(function(){
@@ -943,6 +999,8 @@ var ResetAll = function(){
 	$(".HideCvvExpiry, .ShowCvvExpiry").hide();
 	$(".ErrorMessage").text("").hide();
 	$("#StoredCard").val('false').removeAttr('token');
+	$(".cvv .hlp .info .amex").hide();
+	$(".cvv .hlp .info .other").show();
 }
 
 $.fn.resetAll = function(){
@@ -1079,6 +1137,15 @@ $.fn.validate = function(){
 				}else if(CardObject.ibibocode == "MAES"){
 					$("#Category").val('debitcard');
 				}
+
+				if(CardObject.ibibocode == "AMEX"){
+					$(".cvv .hlp .info .other").hide();
+					$(".cvv .hlp .info .amex").show();
+				}else{
+					$(".cvv .hlp .info .amex").hide();
+					$(".cvv .hlp .info .other").show();
+				}
+				
 				if(CardObject.name == 'maestro' && Flag == '' && ($("#Category").val() == 'creditcard' || $("#Category").val() == 'debitcard')){
 					if(!Element.parents(".form").find('.ShowCvvExpiry').is(":visible")){
 						Element.parents(".form").find('.HideCvvExpiry').show();
@@ -1117,6 +1184,9 @@ $.fn.validate = function(){
 					Element.addClass('error');
 					ReturnFlag = false;
 				}
+			}else{
+				$(".cvv .hlp .info .amex").hide();
+				$(".cvv .hlp .info .other").show();
 			}
 			if(Flag == '' && CardObject == null){
 				Element.parents(".form").find(".three").parents(".row").show().find('input, select').addClass('validate').attr('disabled', false).removeClass("disable");
@@ -1125,6 +1195,8 @@ $.fn.validate = function(){
 			if(!checkLuhn(Element.val()) && (Flag == 'submit' || Flag == 'blur')){
 				Element.addClass('error');
 				ReturnFlag = false;
+				$(".cvv .hlp .info .amex").hide();
+				$(".cvv .hlp .info .other").show();
 			}
 		}
 		if((FieldType == 'expiry_month' || FieldType == 'expiry_year') && (Flag == 'submit' || Flag == 'blur')){
