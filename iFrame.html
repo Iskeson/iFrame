@@ -667,6 +667,13 @@ var SbiBinList = ["504435","504645","504774","504775","504809","504993","600206"
 var CurrentCapta = null;
 FormError = false;
 $(document).ready(function(){
+	$(".help_link").click(function(){
+		$("#PopupBox").hide().fadeIn("fast");
+	});
+
+	$("#LearnMoreOkButton").click(function(){
+		$("#PopupBox").hide();
+	});
 	$(".store_card_radio").live("click", function(e){
 		var ct = $(this).attr('token');
 		var Form = $(this).parents(".form");
@@ -975,14 +982,6 @@ $(document).ready(function(){
 		if($(this).val() != ''){
 			$("#IbiboCode").val($(this).val());
 		}
-	});
-
-	$(".help_link").click(function(){
-		$("#PopupBox").hide().fadeIn("fast");
-	});
-
-	$("#LearnMoreOkButton").click(function(){
-		$("#PopupBox").hide();
 	});
 });
 var ResetAll = function(){
