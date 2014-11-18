@@ -663,6 +663,7 @@ var CardTypes = [{name: "amex",pattern: /^(34|37)/,valid_length: [15],ibibocode:
 var StoredCards = PayU.getUserCards();
 var StoredCardCC = 0;
 var StoredCardDC = 0;
+var IbiboCodes = PayU.getIbiboCodes();
 var SbiBinList = ["504435","504645","504774","504775","504809","504993","600206","603845","622018"];
 var CurrentCapta = null;
 FormError = false;
@@ -827,9 +828,11 @@ $(document).ready(function(){
 			
 		}
 	});
-	$.each(PayU.getIbiboCodes(), function(Opt, OptObj){
-		$("." + Opt).show();
-	});
+	if(typeof IbiboCodes != 'undefined' && IbiboCodes != null){
+		$.each(IbiboCodes, function(Opt, OptObj){
+			$("." + Opt).show();
+		});	
+	}
 
 	for(i=date.getFullYear();i<=date.getFullYear()+45;i++){
 		$(".ExpiryYear").append('<option value="'+i+'">'+i+'</option>');
@@ -857,7 +860,7 @@ $(document).ready(function(){
 		$('.dp_content li').removeClass('sel');
 		$(this).addClass('sel').parents('.drop_down').find('span').text($(this).text());
 	});
-
+	
 	$("#CreditCardForm").validate();
 	$("#DebitCardForm").validate();
 	$("#NetBankingForm").validate();
@@ -901,30 +904,32 @@ $(document).ready(function(){
 			$("#tabs li a[category='debitcard']").click();
 		}
 	});
+	
 	var Top5NBOptions = [];
-	$.each(PayU.getTop5NetbankingCodes(), function(Ind, Obj){
-		$("#NetBankingSelectBox").append('<option value="'+Ind+'">'+Obj.title+'</option>');
-		Top5NBOptions.push(Ind);
-	});
-	$("#NetBankingSelectBox").append('<option value="-----------" disabled>--------------------</option>');
-	$.each(PayU.getIbiboCodes().netbanking, function(Ind, Obj){
-		if(!Top5NBOptions.inArray(Ind)){
+	if(typeof IbiboCodes.netbanking != 'undefined'){
+		$.each(PayU.getTop5NetbankingCodes(), function(Ind, Obj){
 			$("#NetBankingSelectBox").append('<option value="'+Ind+'">'+Obj.title+'</option>');
-		}
-	});
+			Top5NBOptions.push(Ind);
+		});
+		$("#NetBankingSelectBox").append('<option value="-----------" disabled>--------------------</option>');
+		$.each(IbiboCodes.netbanking, function(Ind, Obj){
+			if(!Top5NBOptions.inArray(Ind)){
+				$("#NetBankingSelectBox").append('<option value="'+Ind+'">'+Obj.title+'</option>');
+			}
+		});	
+	}
 	var EmiData = {};
-	$.each(PayU.getIbiboCodes().emi, function(ind, obj){
-		$(EmiData).prop(obj.bank.BankName(), []);
-	});
-	$.each(PayU.getIbiboCodes().emi, function(ind, obj){
-		obj.ibibo_code = ind;
-		var BankName = obj.bank.BankName();
-		EmiData[BankName].push(obj);
-	});
-
-	$.each(EmiData, function(BankName, DurationArray){
-		$("#EmiBankSelectBox").append('<option value="' + BankName + '">' + BankName.replace("_", " ") + '</option>');
-	});
+	if(typeof IbiboCodes.emi != 'undefined'){
+		$.each(IbiboCodes.emi, function(ind, obj){
+			$(EmiData).prop(obj.bank.BankName(), []);
+			obj.ibibo_code = ind;
+			var BankName = obj.bank.BankName();
+			EmiData[BankName].push(obj);
+		});
+		$.each(EmiData, function(BankName, DurationArray){
+			$("#EmiBankSelectBox").append('<option value="' + BankName + '">' + BankName.replace("_", " ") + '</option>');
+		});
+	}
 
 	$("#EmiBankSelectBox").change(function(){
 		$("#EmiCardContainer").slideUp('fast');
@@ -942,7 +947,7 @@ $(document).ready(function(){
 			$("#EmiDurationSelectBox").attr("disabled", true).addClass("disable");
 		}
 	});
-
+	
 	$("#EmiDurationSelectBox").change(function(){
 		var EmiCharges = PayU.getEMIBankCharges()[$(this).val()];
 		if($(this).val() != ''){
@@ -973,11 +978,12 @@ $(document).ready(function(){
 			$(".EmiAmount2").parents('.row').hide();
 		}
 	});
-
-	$.each(PayU.getIbiboCodes().cashcard, function(ind, obj){
-		$("#CashCardSelectBox").append('<option value="'+ ind +'">' + obj.title + '</option>');
-	});
-
+	if(typeof IbiboCodes.cashcard != 'undefined'){
+		$.each(IbiboCodes.cashcard, function(ind, obj){
+			$("#CashCardSelectBox").append('<option value="'+ ind +'">' + obj.title + '</option>');
+		});	
+	}
+	
 	$("#CashCardSelectBox").change(function(){
 		if($(this).val() != ''){
 			$("#IbiboCode").val($(this).val());
@@ -995,6 +1001,7 @@ var ResetAll = function(){
 	$("#CaptchaDiv span").text(CurrentCapta);
 	$("#EmiForm").find("#EmiCardContainer").hide();
 	$("#EmiForm").find(".EmiAmount").parents(".row").hide();
+	$("#EmiForm").find(".EmiAmount2").parents(".row").hide();
 	$("#EmiDurationSelectBox").html('<option value="">Select Duration</option>').attr("disabled", true).addClass("disable");
 	$(".HideCvvExpiry, .ShowCvvExpiry").hide();
 	$(".ErrorMessage").text("").hide();
@@ -1002,13 +1009,11 @@ var ResetAll = function(){
 	$(".cvv .hlp .info .amex").hide();
 	$(".cvv .hlp .info .other").show();
 }
-
 $.fn.resetAll = function(){
 	$(this).find("input, select").not(":submit, :button").val("").removeClass("error").next(".icon").removeClass("visa maestro mastercard amex diners");
 	$(this).find(".ExpiryMonthLabel, .ExpiryYearLabel").hide();
 	$(this).find(".ExpiryYear, .ExpiryMonth").show();
 }
-
 Array.prototype.inArray = function(ind){
 	for(i=0; i<this.length;i++){
 		if(ind == this[i]){
@@ -1017,7 +1022,6 @@ Array.prototype.inArray = function(ind){
 	}
 	return false;
 }
-
 String.prototype.reverse = function(){return this.split("").reverse().join("")};
 
 var getCaptcha = function(){
@@ -1034,11 +1038,9 @@ var getCaptcha = function(){
 String.prototype.BankName = function(){
 	return this.replace(/_?P[GM]/, "") + "_Bank";
 }
-
 String.prototype.trim = function(){
 	 return this.replace(/^\s+|\s+$/g, "");
 }
-
 var sort_by = function(field, reverse, primer){
    var key = primer ? 
        function(x) {return primer(x[field])} : 
@@ -1161,7 +1163,7 @@ $.fn.validate = function(){
 				}else if($("#Category").val() != "emi" && $("#Category").val() != "cashcard") {
 					$("#IbiboCode").val(CardObject.ibibocode);
                 }
-                if(CardObject.ibibocode == 'MAES' && typeof PayU.getIbiboCodes()[$("#Category").val()]['MAES'] == 'undefined' && typeof PayU.getIbiboCodes()[$("#Category").val()]['SMAE'] != 'undefined'){
+                if(CardObject.ibibocode == 'MAES' && typeof IbiboCodes[$("#Category").val()]['MAES'] == 'undefined' && typeof IbiboCodes[$("#Category").val()]['SMAE'] != 'undefined'){
 					if(SbiBinList.inArray(Element.val().substr(0, 6))){
 						$("#IbiboCode").val('SMAE');
 						$("#Category").val('debitcard');
@@ -1179,7 +1181,7 @@ $.fn.validate = function(){
 					Element.parents(".form").find('input[name="cvv"]').attr('maxlength', '3').attr('validate', 'cvv');
 				}
 				
-				if($("#Category").val() != "emi" && typeof PayU.getIbiboCodes()['creditcard'][$("#IbiboCode").val()] == "undefined" && typeof PayU.getIbiboCodes()['debitcard'][$("#IbiboCode").val()] == "undefined"){
+				if($("#Category").val() != "emi" && typeof IbiboCodes['creditcard'][$("#IbiboCode").val()] == "undefined" && typeof IbiboCodes['debitcard'][$("#IbiboCode").val()] == "undefined"){
 					Element.parents(".form").find(".ErrorMessage").text("This card not supported by merchant").show();
 					Element.addClass('error');
 					ReturnFlag = false;
