@@ -107,292 +107,543 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 .cvv .hlp .info p{font-size:10px;margin:0;padding:0;}
 .cvv .hlp .info .amex{display:none;}
 .cvv .hlp:hover .info{display:block;}
-</style></head><body>
-<p><input type="hidden" id="Category"><input type="hidden" id="IbiboCode"><input type="hidden" id="StoreCard" value="false"><input type="hidden" id="StoredCard" value="false"></p>
-<div id="wrapper">
-<div id="TabContainer">
-<ul id="tabs"><li class="creditcard"><a href="#CreditCard" category="creditcard" default-ibibo-code="CC">Credit Card</a><span class="white"></span></li>
-<li class="debitcard"><a href="#DebitCard" category="debitcard" default-ibibo-code="VISA">Debit Card</a><span class="white"></span></li>
-<li class="emi"><a href="#EMI" category="emi" default-ibibo-code="">EMI</a><span class="white"></span></li>
-<li class="netbanking"><a href="#NetBanking" category="netbanking" default-ibibo-code="">Net Banking</a><span class="white"></span></li>
-<li class="cashcard"><a href="#CashCard" category="cashcard" default-ibibo-code="">Cash Card</a><span class="white"></span></li>
-<li class="cod"><a href="#COD" category="cod" default-ibibo-code="COD">Cash on Delivery</a><span class="white"></span></li>
-</ul></div>
-<div id="CardConatiner">
-<p class="we_accept_img"><img src="https://www.goibibo.com/images/v2/payu/cards_2.jpg" alt="Accpeted Payment Methods"></p>
-<div class="page" id="CreditCard">
-<div class="form" id="CreditCardForm">
-<div class="row_new" id="StoredCreditCardContainer">
-<div class="one"><label>Select Stored Card</label>
-<ul id="StoredCreditCards" class="StoreCardUl"><li class="use_new_card"><input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0"><div>Use New Card</div>
-</li>
-</ul></div>
-</div>
-<div class="new_card_form">
-<p class="ErrorMessage">This is error message</p>
-<div class="row">
-<div class="one"><label>Card Number</label> <input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number"><span class="icon"></span></div>
-</div>
-<div class="row">
-<div class="one"><label>Name on Card</label> <input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card"></div>
-</div>
-<div class="row">
-<div class="three"><label>Expiry Month</label>
-<div class="textbox ExpiryMonthLabel hidden">XX</div>
-<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month"><option value="">Month</option><option value="01">Jan (01)</option><option value="02">Feb (02)</option><option value="03">Mar (03)</option><option value="04">Apr (04)</option><option value="05">May (05)</option><option value="06">Jun (06)</option><option value="07">Jul (07)</option><option value="08">Aug (08)</option><option value="09">Sep (09)</option><option value="10">Oct (10)</option><option value="11">Nov (11)</option><option value="12">Dec (12)</option></select></div>
-<div class="three"><label>Expiry Year</label>
-<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year"><option value="">Year</option></select></div>
-<div class="three cvv"><label>CVV</label> <input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv"><div class="hlp"><span title="What is CVV?"><i>?</i></span>
-<div class="info">
-<div class="amex"><img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png"><p>A 4-digit number on the front, just above on your credit card number.</p>
-</div>
-<div class="other"><img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png"><p>A 3-digit number is reverse italics on the back of your card.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
-<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
-</div>
-</div>
-<div class="row StoreCardRow">
-<div class="one">
-<div class="checkbox" data-callback="toggle_card_label"><span class="mark">✔</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
-<div class="card_label"><label>Card Label</label> <input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label"></div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="one"><input type="submit" value="Make Payment" class="button"></div>
-</div>
-</div>
-</div>
-<div class="page" id="DebitCard">
-<div class="form" id="DebitCardForm">
-<div class="row_new" id="StoredDebitCardContainer">
-<div class="one"><label>Select Stored Card</label>
-<ul id="StoredDebitCards" class="StoreCardUl"><li class="use_new_card"><input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0"><div>Use New Card</div>
-</li>
-</ul></div>
-</div>
-<div class="new_card_form">
-<p class="ErrorMessage">This is error message</p>
-<div class="row">
-<div class="one"><label>Card Number</label> <input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number"><span class="icon"></span></div>
-</div>
-<div class="row">
-<div class="one"><label>Name on Card</label> <input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card"></div>
-</div>
-<div class="row">
-<div class="three"><label>Expiry Month</label>
-<div class="textbox ExpiryMonthLabel hidden">XX</div>
-<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month"><option value="">Month</option><option value="01">Jan (01)</option><option value="02">Feb (02)</option><option value="03">Mar (03)</option><option value="04">Apr (04)</option><option value="05">May (05)</option><option value="06">Jun (06)</option><option value="07">Jul (07)</option><option value="08">Aug (08)</option><option value="09">Sep (09)</option><option value="10">Oct (10)</option><option value="11">Nov (11)</option><option value="12">Dec (12)</option></select></div>
-<div class="three"><label>Expiry Year</label>
-<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year"><option value="">Year</option></select></div>
-<div class="three cvv"><label>CVV</label> <input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv"><div class="hlp"><span title="What is CVV?"><i>?</i></span>
-<div class="info">
-<div class="amex"><img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png"><p>A 4-digit number on the front, just above on your credit card number.</p>
-</div>
-<div class="other"><img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png"><p>A 3-digit number is reverse italics on the back of your card.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
-<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
-</div>
-</div>
-<div class="row StoreCardRow">
-<div class="one">
-<div class="checkbox" data-callback="toggle_card_label"><span class="mark">✔</span><span>Store this card for future transactions</span> <a href="javascript:void(0);" class="help_link">Learn More</a></div>
-<div class="card_label"><label>Card Label</label> <input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label"></div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-</div>
-</div>
-<div class="row">
-<div class="one"><input type="submit" value="Make Payment" class="button"></div>
-</div>
-</div>
-</div>
-<div class="page" id="EMI">
-<div class="form" id="EmiForm">
-<div class="row">
-<div class="one"><label>Select Your Bank</label><select name="emi_bank" class="textbox validate" validate="emi_bank" id="EmiBankSelectBox"><option value="">Select Your Bank</option></select></div>
-</div>
-<div class="row">
-<div class="one"><label>Select EMI Duration</label><select name="emi_duration" disabled class="textbox validate disable" validate="emi_duration" id="EmiDurationSelectBox"><option value="">Select Duration</option></select></div>
-</div>
-<div class="row" style="display: none;">
-<div class="one"></div>
-</div>
-<div class="row" style="display: none;">
-<div class="one"></div>
-</div>
-<div class="row" style="display: none;">
-<div class="one">
-<p class="message">Indicative EMI is <b>Rs. <span class="EmiAmount">1.67</span></b> and indicative total interest paid will be <b>Rs. <span class="EmiInterest"></span></b>. Taxes applicable on interest paid to bank.</p>
-</div>
-</div>
-<div class="row" style="display: none;">
-<div class="one">
-<p class="message">Your monthly EMI payment will be <b>Rs. <span class="EmiAmount2">1.67</span></b>/month for the next <b>Rs. <span class="EmiTitle2"></span></b>.</p>
-</div>
-</div>
-<div id="EmiCardContainer" style="display: none;">
-<div class="row_new" id="StoredEmiCardContainer">
-<div class="one"><label>Select Stored Card</label>
-<ul id="StoredEmiCards" class="StoreCardUl"><li class="use_new_card"><input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0"><div>Use New Card</div>
-</li>
-</ul></div>
-</div>
-<div class="new_card_form">
-<div class="row">
-<div class="one"><label>Card Number</label> <input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number"><span class="icon"></span></div>
-</div>
-<div class="row">
-<div class="one"><label>Name on Card</label> <input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card"></div>
-</div>
-<div class="row">
-<div class="three"><label>Expiry Month</label>
-<div class="textbox ExpiryMonthLabel hidden">XX</div>
-<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month"><option value="">Month</option><option value="01">Jan (01)</option><option value="02">Feb (02)</option><option value="03">Mar (03)</option><option value="04">Apr (04)</option><option value="05">May (05)</option><option value="06">Jun (06)</option><option value="07">Jul (07)</option><option value="08">Aug (08)</option><option value="09">Sep (09)</option><option value="10">Oct (10)</option><option value="11">Nov (11)</option><option value="12">Dec (12)</option></select></div>
-<div class="three"><label>Expiry Year</label>
-<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year"><option value="">Year</option></select></div>
-<div class="three cvv"><label>CVV</label> <input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv"><div class="hlp"><span title="What is CVV?"><i>?</i></span>
-<div class="info">
-<div class="amex"><img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png"><p>A 4-digit number on the front, just above on your credit card number.</p>
-</div>
-<div class="other"><img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png"><p>A 3-digit number is reverse italics on the back of your card.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
-<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-</div>
-</div>
-<div class="row">
-<div class="one"><input type="submit" value="Make Payment" class="button"></div>
-</div>
-</div>
-</div>
-<div class="page" id="NetBanking">
-<div class="form" id="NetBankingForm">
-<div class="row">
-<div class="one"><label>Select Your Bank</label><select name="net_banking" class="textbox validate" validate="net_banking" id="NetBankingSelectBox"><option value="">Select Your Bank</option></select></div>
-</div>
-<div class="row">
-<div class="one">
-<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-</div>
-</div>
-<div class="row">
-<div class="one"><input type="submit" value="Make Payment" class="button"></div>
-</div>
-</div>
-</div>
-<div class="page" id="CashCard">
-<div class="form" id="CashCardForm">
-<div class="row">
-<div class="one"><label>Select Your Cash Card</label><select name="cash_card" class="textbox validate" validate="cash_card" id="CashCardSelectBox"><option value="">Select Your Cash Card</option></select></div>
-</div>
-<div class="row">
-<div class="one">
-<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-</div>
-</div>
-<div class="row">
-<div class="one"><input type="submit" value="Make Payment" class="button"></div>
-</div>
-</div>
-</div>
-<div class="page" id="COD">
-<p>Please confirm your shipping address for cash on delivery payment</p>
-<div class="form" id="CodForm">
-<div class="row">
-<div class="two"><label>First Name</label> <input type="text" name="first_name" class="textbox validate" validate="name" placeholder="First Name"></div>
-<div class="two"><label>Last Name</label> <input type="text" name="last_name" class="textbox validate" validate="name" placeholder="Last Name"></div>
-</div>
-<div class="row">
-<div class="two"><label>Address Line 1</label> <input type="text" name="address_line_1" class="textbox validate" validate="address" placeholder="Address Line 1"></div>
-<div class="two"><label>Address Line 2</label> <input type="text" name="address_line_2" class="textbox validate" validate="address" placeholder="Address Line 2"></div>
-</div>
-<div class="row">
-<div class="two"><label>City</label> <input type="text" name="city" class="textbox validate" validate="name" placeholder="City"></div>
-<div class="two"><label>State</label><select name="state" class="textbox validate"><option value="">Select State</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Tripura">Tripura</option><option value="Uttarakhand">Uttarakhand</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="West Bengal">West Bengal</option><option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option><option value="Daman and Diu">Daman and Diu</option><option value="Lakshadweep">Lakshadweep</option><option value="Pondicherry">Pondicherry</option></select></div>
-</div>
-<div class="row">
-<div class="two"><label>Country</label> <input type="text" name="country" class="textbox validate" validate="name" placeholder="Country"></div>
-<div class="two"><label>Pin Code</label> <input type="text" name="pin_code" class="textbox validate" validate="numbers" placeholder="Pin Code"></div>
-</div>
-<div class="row">
-<div class="two"><label>Mobile</label> <input type="text" name="mobile" class="textbox validate" validate="numbers" placeholder="Mobile"></div>
-<div class="two"><label>Verify Yourself</label> <input type="text" name="captcha_text" class="textbox captcha validate" validate="captcha"><div id="CaptchaDiv"><span></span><a href="javascript:void(0);">↻</a></div>
-</div>
-</div>
-<div class="row">
-<div class="one">
-<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-</div>
-</div>
-<div class="row">
-<div class="one"><input type="submit" value="Make Payment" class="button"></div>
-</div>
-</div>
-</div>
-<ul id="secure_logo"><li class="visa"><a url="https://usa.visa.com/personal/security/vbv/index.html?ep=v_sym_/verified" href="javascript:void(0);"></a></li>
-<li class="master"><a url="http://www.mastercard.com/us/business/en/corporate/securecode/sc_popup.html?language=en" href="javascript:void(0);"></a></li>
-<li class="verisign"><a url="https://seal.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=www.payu.in&amp;lang=en" href="javascript:void(0);"></a></li>
-<li class="pci"><a url="http://seal.controlcase.com/index.php?page=showCert&amp;cId=3877025869" href="javascript:void(0);"></a></li>
-</ul></div>
-</div>
-<div id="PopupBox">
-<h2>Its extremely safe and secure</h2>
-<ul id="LearnMoreList"><li><img class="left" alt="" src="images/protection_icon.gif"><h6>Hardware protection.</h6>
-<p>A specialised hardware is used to keep your data safe in a encrypted format. Very few companies do it globally since this hardware is very expensive and we are the first one's in India.</p>
-</li>
-<li><img class="left" alt="" src="images/password_stored.gif"><h6>No password stored.</h6>
-<p>There is nothing to worry about. And we only store your card number and expiry date. CVV or your password is not stored. You would need to enter that every time whenever you have to do a transaction.</p>
-</li>
-<li><img class="left" alt="" src="images/secure.gif"><h6>Secure</h6>
-<p>We are one of the very few companies who use this level of protection.</p>
-</li>
-<li><img class="left" alt="" src="images/control_icon.gif"><h6>Hardware protection.</h6>
-<p>You can always check, edit or completely remove any information you have given us.</p>
-</li>
-</ul><p>For any further information, we are glad to assist at <a href="mailto:contact@payu.in">contact@payu.in</a></p>
-<div class="save_card"><input type="button" value="Ok" class="button active" id="LearnMoreOkButton"></div>
-</div>
-</body><head><script type="text/javascript">
+</style>
+</head>
+<body>
+	<p><input type="hidden" id="Category"><input type="hidden" id="IbiboCode"><input type="hidden" id="StoreCard" value="false"><input type="hidden" id="StoredCard" value="false"></p>
+	<div id="wrapper">
+		<div id="TabContainer">
+			<ul id="tabs">
+				<li class="creditcard"><a href="#CreditCard" category="creditcard" default-ibibo-code="CC">Credit Card</a><span class="white"></span></li>
+				<li class="debitcard"><a href="#DebitCard" category="debitcard" default-ibibo-code="VISA">Debit Card</a><span class="white"></span></li>
+				<li class="emi"><a href="#EMI" category="emi" default-ibibo-code="">EMI</a><span class="white"></span></li>
+				<li class="netbanking"><a href="#NetBanking" category="netbanking" default-ibibo-code="">Net Banking</a><span class="white"></span></li>
+				<li class="cashcard"><a href="#CashCard" category="cashcard" default-ibibo-code="">Cash Card</a><span class="white"></span></li>
+				<li class="cod"><a href="#COD" category="cod" default-ibibo-code="COD">Cash on Delivery</a><span class="white"></span></li>
+			</ul>
+		</div>
+		<div id="CardConatiner">
+			<p class="we_accept_img"><img src="https://www.goibibo.com/images/v2/payu/cards_2.jpg" alt="Accpeted Payment Methods"></p>
+			<div class="page" id="CreditCard">
+				<div class="form" id="CreditCardForm">
+					<div class="row_new" id="StoredCreditCardContainer">
+						<div class="one">
+							<label>Select Stored Card</label>
+							<ul id="StoredCreditCards" class="StoreCardUl">
+								<li class="use_new_card">
+									<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
+									<div>Use New Card</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="new_card_form">
+						<p class="ErrorMessage">This is error message</p>
+						<div class="row">
+							<div class="one">
+								<label>Card Number</label>
+								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
+								<span class="icon"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="one">
+								<label>Name on Card</label>
+								<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+							</div>
+						</div>
+						<div class="row">
+							<div class="three">
+								<label>Expiry Month</label>
+								<div class="textbox ExpiryMonthLabel hidden">XX</div>
+								<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+									<option value="">Month</option>
+									<option value="01">Jan (01)</option>
+									<option value="02">Feb (02)</option>
+									<option value="03">Mar (03)</option>
+									<option value="04">Apr (04)</option>
+									<option value="05">May (05)</option>
+									<option value="06">Jun (06)</option>
+									<option value="07">Jul (07)</option>
+									<option value="08">Aug (08)</option>
+									<option value="09">Sep (09)</option>
+									<option value="10">Oct (10)</option>
+									<option value="11">Nov (11)</option>
+									<option value="12">Dec (12)</option>
+								</select>
+							</div>
+							<div class="three">
+								<label>Expiry Year</label>
+								<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+								<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+									<option value="">Year</option>
+								</select>
+							</div>
+							<div class="three cvv">
+								<label>CVV</label> 
+								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
+								<div class="hlp">
+									<span title="What is CVV?"><i>?</i></span>
+									<div class="info">
+										<div class="amex">
+											<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
+											<p>A 4-digit number on the front, just above on your credit card number.</p>
+										</div>
+										<div class="other">
+											<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
+											<p>A 3-digit number is reverse italics on the back of your card.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="one">
+								<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
+								<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+							</div>
+						</div>
+						<div class="row StoreCardRow">
+							<div class="one">
+								<div class="checkbox" data-callback="toggle_card_label">
+									<span class="mark">✔</span>
+									<span>Store this card for future transactions</span> 
+									<a href="javascript:void(0);" class="help_link">Learn More</a>
+								</div>
+								<div class="card_label">
+									<label>Card Label</label> 
+									<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="one">
+								<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<input type="submit" value="Make Payment" class="button">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page" id="DebitCard">
+				<div class="form" id="DebitCardForm">
+					<div class="row_new" id="StoredDebitCardContainer">
+						<div class="one">
+							<label>Select Stored Card</label>
+							<ul id="StoredDebitCards" class="StoreCardUl">
+								<li class="use_new_card">
+									<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
+									<div>Use New Card</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="new_card_form">
+						<p class="ErrorMessage">This is error message</p>
+						<div class="row">
+							<div class="one">
+								<label>Card Number</label> 
+								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
+								<span class="icon"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="one">
+								<label>Name on Card</label> 
+								<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+							</div>
+						</div>
+						<div class="row">
+							<div class="three">
+								<label>Expiry Month</label>
+									<div class="textbox ExpiryMonthLabel hidden">XX</div>
+									<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+										<option value="">Month</option>
+										<option value="01">Jan (01)</option>
+										<option value="02">Feb (02)</option>
+										<option value="03">Mar (03)</option>
+										<option value="04">Apr (04)</option>
+										<option value="05">May (05)</option>
+										<option value="06">Jun (06)</option>
+										<option value="07">Jul (07)</option>
+										<option value="08">Aug (08)</option>
+										<option value="09">Sep (09)</option>
+										<option value="10">Oct (10)</option>
+										<option value="11">Nov (11)</option>
+										<option value="12">Dec (12)</option>
+									</select>
+								</div>
+								<div class="three">
+									<label>Expiry Year</label>
+									<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+									<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+										<option value="">Year</option>
+									</select>
+								</div>
+								<div class="three cvv">
+									<label>CVV</label> 
+									<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
+									<div class="hlp">
+										<span title="What is CVV?"><i>?</i></span>
+										<div class="info">
+											<div class="amex">
+												<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
+												<p>A 4-digit number on the front, just above on your credit card number.</p>
+											</div>
+											<div class="other">
+												<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
+												<p>A 3-digit number is reverse italics on the back of your card.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+								<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
+								<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+							</div>
+						</div>
+						<div class="row StoreCardRow">
+							<div class="one">
+								<div class="checkbox" data-callback="toggle_card_label">
+									<span class="mark">✔</span><span>Store this card for future transactions</span> 
+									<a href="javascript:void(0);" class="help_link">Learn More</a>
+								</div>
+								<div class="card_label">
+									<label>Card Label</label> 
+									<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<input type="submit" value="Make Payment" class="button">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page" id="EMI">
+				<div class="form" id="EmiForm">
+					<div class="row">
+						<div class="one">
+							<label>Select Your Bank</label>
+							<select name="emi_bank" class="textbox validate" validate="emi_bank" id="EmiBankSelectBox">
+								<option value="">Select Your Bank</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<label>Select EMI Duration</label>
+							<select name="emi_duration" disabled class="textbox validate disable" validate="emi_duration" id="EmiDurationSelectBox">
+								<option value="">Select Duration</option>
+							</select>
+						</div>
+					</div>
+					<div class="row" style="display: none;">
+						<div class="one"></div>
+					</div>
+					<div class="row" style="display: none;">
+						<div class="one"></div>
+					</div>
+					<div class="row" style="display: none;">
+						<div class="one">
+							<p class="message">Indicative EMI is <b>Rs. <span class="EmiAmount">1.67</span></b> and indicative total interest paid will be <b>Rs. <span class="EmiInterest"></span></b>. Taxes applicable on interest paid to bank.</p>
+						</div>
+					</div>
+					<div class="row" style="display: none;">
+						<div class="one">
+							<p class="message">Your monthly EMI payment will be <b>Rs. <span class="EmiAmount2">1.67</span></b>/month for the next <b>Rs. <span class="EmiTitle2"></span></b>.</p>
+						</div>
+					</div>
+					<div id="EmiCardContainer" style="display: none;">
+						<div class="row_new" id="StoredEmiCardContainer">
+							<div class="one">
+								<label>Select Stored Card</label>
+								<ul id="StoredEmiCards" class="StoreCardUl">
+									<li class="use_new_card">
+										<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
+										<div>Use New Card</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="new_card_form">
+							<div class="row">
+								<div class="one">
+									<label>Card Number</label> 
+									<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
+									<span class="icon"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<label>Name on Card</label> 
+									<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+								</div>
+							</div>
+							<div class="row">
+								<div class="three">
+									<label>Expiry Month</label>
+									<div class="textbox ExpiryMonthLabel hidden">XX</div>
+									<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+										<option value="">Month</option>
+										<option value="01">Jan (01)</option>
+										<option value="02">Feb (02)</option>
+										<option value="03">Mar (03)</option>
+										<option value="04">Apr (04)</option>
+										<option value="05">May (05)</option>
+										<option value="06">Jun (06)</option>
+										<option value="07">Jul (07)</option>
+										<option value="08">Aug (08)</option>
+										<option value="09">Sep (09)</option>
+										<option value="10">Oct (10)</option>
+										<option value="11">Nov (11)</option>
+										<option value="12">Dec (12)</option>
+									</select>
+								</div>
+								<div class="three">
+									<label>Expiry Year</label>
+									<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+									<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+										<option value="">Year</option>
+									</select>
+								</div>
+								<div class="three cvv">
+									<label>CVV</label> 
+									<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
+									<div class="hlp">
+										<span title="What is CVV?"><i>?</i></span>
+										<div class="info">
+											<div class="amex">
+												<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
+												<p>A 4-digit number on the front, just above on your credit card number.</p>
+											</div>
+											<div class="other">
+												<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
+												<p>A 3-digit number is reverse italics on the back of your card.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
+									<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<input type="submit" value="Make Payment" class="button">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page" id="NetBanking">
+				<div class="form" id="NetBankingForm">
+					<div class="row">
+						<div class="one">
+							<label>Select Your Bank</label>
+							<select name="net_banking" class="textbox validate" validate="net_banking" id="NetBankingSelectBox">
+								<option value="">Select Your Bank</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<input type="submit" value="Make Payment" class="button">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page" id="CashCard">
+				<div class="form" id="CashCardForm">
+					<div class="row">
+						<div class="one">
+							<label>Select Your Cash Card</label>
+							<select name="cash_card" class="textbox validate" validate="cash_card" id="CashCardSelectBox">
+								<option value="">Select Your Cash Card</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<input type="submit" value="Make Payment" class="button">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page" id="COD">
+				<p>Please confirm your shipping address for cash on delivery payment</p>
+				<div class="form" id="CodForm">
+					<div class="row">
+						<div class="two">
+							<label>First Name</label> 
+							<input type="text" name="first_name" class="textbox validate" validate="name" placeholder="First Name">
+						</div>
+						<div class="two">
+							<label>Last Name</label> 
+							<input type="text" name="last_name" class="textbox validate" validate="name" placeholder="Last Name">
+						</div>
+					</div>
+					<div class="row">
+						<div class="two">
+							<label>Address Line 1</label> 
+							<input type="text" name="address_line_1" class="textbox validate" validate="address" placeholder="Address Line 1">
+						</div>
+						<div class="two">
+							<label>Address Line 2</label> 
+							<input type="text" name="address_line_2" class="textbox validate" validate="address" placeholder="Address Line 2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="two">
+							<label>City</label> 
+							<input type="text" name="city" class="textbox validate" validate="name" placeholder="City">
+						</div>
+						<div class="two">
+							<label>State</label>
+							<select name="state" class="textbox validate">
+								<option value="">Select State</option>
+								<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+								<option value="Andhra Pradesh">Andhra Pradesh</option>
+								<option value="Assam">Assam</option>
+								<option value="Bihar">Bihar</option>
+								<option value="Chandigarh">Chandigarh</option>
+								<option value="Chhattisgarh">Chhattisgarh</option>
+								<option value="Delhi">Delhi</option>
+								<option value="Goa">Goa</option>
+								<option value="Gujarat">Gujarat</option>
+								<option value="Haryana">Haryana</option>
+								<option value="Himachal Pradesh">Himachal Pradesh</option>
+								<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+								<option value="Jharkhand">Jharkhand</option>
+								<option value="Karnataka">Karnataka</option>
+								<option value="Kerala">Kerala</option>
+								<option value="Madhya Pradesh">Madhya Pradesh</option>
+								<option value="Maharashtra">Maharashtra</option>
+								<option value="Manipur">Manipur</option>
+								<option value="Meghalaya">Meghalaya</option>
+								<option value="Mizoram">Mizoram</option>
+								<option value="Nagaland">Nagaland</option>
+								<option value="Orissa">Orissa</option>
+								<option value="Punjab">Punjab</option>
+								<option value="Rajasthan">Rajasthan</option>
+								<option value="Sikkim">Sikkim</option>
+								<option value="Tamil Nadu">Tamil Nadu</option>
+								<option value="Tripura">Tripura</option>
+								<option value="Uttarakhand">Uttarakhand</option>
+								<option value="Uttar Pradesh">Uttar Pradesh</option>
+								<option value="West Bengal">West Bengal</option>
+								<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+								<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+								<option value="Daman and Diu">Daman and Diu</option>
+								<option value="Lakshadweep">Lakshadweep</option>
+								<option value="Pondicherry">Pondicherry</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="two">
+							<label>Country</label> 
+							<input type="text" name="country" class="textbox validate" validate="name" placeholder="Country">
+						</div>
+						<div class="two">
+							<label>Pin Code</label> 
+							<input type="text" name="pin_code" class="textbox validate" validate="numbers" placeholder="Pin Code">
+						</div>
+					</div>
+					<div class="row">
+						<div class="two">
+							<label>Mobile</label> 
+							<input type="text" name="mobile" class="textbox validate" validate="numbers" placeholder="Mobile">
+						</div>
+						<div class="two">
+							<label>Verify Yourself</label> 
+							<input type="text" name="captcha_text" class="textbox captcha validate" validate="captcha">
+							<div id="CaptchaDiv"><span></span><a href="javascript:void(0);">↻</a></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="one">
+							<input type="submit" value="Make Payment" class="button">
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul id="secure_logo">
+				<li class="visa"><a url="https://usa.visa.com/personal/security/vbv/index.html?ep=v_sym_/verified" href="javascript:void(0);"></a></li>
+				<li class="master"><a url="http://www.mastercard.com/us/business/en/corporate/securecode/sc_popup.html?language=en" href="javascript:void(0);"></a></li>
+				<li class="verisign"><a url="https://seal.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=www.payu.in&amp;lang=en" href="javascript:void(0);"></a></li>
+				<li class="pci"><a url="http://seal.controlcase.com/index.php?page=showCert&amp;cId=3877025869" href="javascript:void(0);"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="PopupBox">
+		<h2>Its extremely safe and secure</h2>
+		<ul id="LearnMoreList">
+			<li>
+				<img class="left" alt="" src="images/protection_icon.gif">
+				<h6>Hardware protection.</h6>
+				<p>A specialised hardware is used to keep your data safe in a encrypted format. Very few companies do it globally since this hardware is very expensive and we are the first one's in India.</p>
+			</li>
+			<li>
+				<img class="left" alt="" src="images/password_stored.gif">
+				<h6>No password stored.</h6>
+				<p>There is nothing to worry about. And we only store your card number and expiry date. CVV or your password is not stored. You would need to enter that every time whenever you have to do a transaction.</p>
+			</li>
+			<li>
+				<img class="left" alt="" src="images/secure.gif">
+				<h6>Secure</h6>
+				<p>We are one of the very few companies who use this level of protection.</p>
+			</li>
+			<li>
+				<img class="left" alt="" src="images/control_icon.gif">
+				<h6>Hardware protection.</h6>
+				<p>You can always check, edit or completely remove any information you have given us.</p>
+			</li>
+		</ul>
+		<p>For any further information, we are glad to assist at <a href="mailto:contact@payu.in">contact@payu.in</a></p>
+		<div class="save_card">
+			<input type="button" value="Ok" class="button active" id="LearnMoreOkButton">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
 var date = new Date();
 var VaidationRegex = {numbers:/^[0-9]+$/i,address:/^[a-z0-9\.\-\/ ]+$/i,name:/^[a-z ]+$/i,name_on_card: /^[a-z0-9\.\- ]+$/i,card_number: /^\d+$/,cvv: /^(?!000)\d{3}$/,cvv4: /^(?!000)\d{4}$/, card_label:/^[a-z]*[0-9]{1,4}[a-z]*$|^[a-z]*$/};
 var CardTypes = [{name: "amex",pattern: /^(34|37)/,valid_length: [15],ibibocode: "AMEX"}, {name: "diners",pattern: /^(30|36|38)/,valid_length: [14],ibibocode: "DINR"}, {name: "visa",pattern: /^4/,valid_length: [16],ibibocode: "VISA"}, {name: "mastercard",pattern: /^5[1-5]/,valid_length: [16],ibibocode: "MAST"}, {name: "maestro",pattern: /^(50|63|66|5[6-8]|6[8-9]|600[0-9]|6010|601[2-9]|60[2-9]|61|620|621|6220|6221[0-1])/,valid_length: [12, 13, 14, 15, 16, 17, 18, 19],ibibocode: "MAES"}];
@@ -1006,7 +1257,8 @@ String.prototype.replaceArray = function(find, replace) {
   }
   return replaceString;
 };
-</script></head><body><div id="StoreCardLiTemplate" style="display:none;">
+</script>
+<div id="StoreCardLiTemplate" style="display:none;">
 	<li class="store_card_selector" token="{{token}}">	
 		<input type="radio" name="store_card_radio" token="{{token}}" class="radio store_card_radio"><div class="store_card_icon"><span class="{{brand}}"></span></div>
 		<div class="store_card_label">{{card_name}}<span>{{card_number}}</span></div>
@@ -1015,4 +1267,4 @@ String.prototype.replaceArray = function(find, replace) {
 		<a href="javascript:void(0);" class="remove_store_card" token="{{token}}">Delete This Card</a>
 	</li>
 </div>
-</body></html>
+</html>
