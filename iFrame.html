@@ -112,505 +112,533 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 <body>
 	<p><input type="hidden" id="Category"><input type="hidden" id="IbiboCode"><input type="hidden" id="StoreCard" value="false"><input type="hidden" id="StoredCard" value="false"></p>
 	<div id="wrapper">
-		<div id="TabContainer">
-			<ul id="tabs">
-				<li class="creditcard"><a href="#CreditCard" category="creditcard" default-ibibo-code="CC">Credit Card</a><span class="white"></span></li>
-				<li class="debitcard"><a href="#DebitCard" category="debitcard" default-ibibo-code="VISA">Debit Card</a><span class="white"></span></li>
-				<li class="emi"><a href="#EMI" category="emi" default-ibibo-code="">EMI</a><span class="white"></span></li>
-				<li class="netbanking"><a href="#NetBanking" category="netbanking" default-ibibo-code="">Net Banking</a><span class="white"></span></li>
-				<li class="cashcard"><a href="#CashCard" category="cashcard" default-ibibo-code="">Cash Card</a><span class="white"></span></li>
-				<li class="cod"><a href="#COD" category="cod" default-ibibo-code="COD">Cash on Delivery</a><span class="white"></span></li>
-			</ul>
-		</div>
-		<div id="CardConatiner">
-			<p class="we_accept_img"><img src="https://www.goibibo.com/images/v2/payu/cards_2.jpg" alt="Accpeted Payment Methods"></p>
-			<div class="page" id="CreditCard">
-				<div class="form" id="CreditCardForm">
-					<div class="row_new" id="StoredCreditCardContainer">
-						<div class="one">
-							<label>Select Stored Card</label>
-							<ul id="StoredCreditCards" class="StoreCardUl">
-								<li class="use_new_card">
-									<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
-									<div>Use New Card</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="new_card_form">
-						<p class="ErrorMessage">This is error message</p>
-						<div class="row">
-							<div class="one">
-								<label>Card Number</label>
-								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
-								<span class="icon"></span>
+		<div id="main">
+			<div id="paymentoptions">
+				<div id="TabContainer">
+					<ul id="tabs">
+						<li class="creditcard"><a href="#CreditCard" category="creditcard" default-ibibo-code="CC">Credit Card</a><span class="white"></span></li>
+						<li class="debitcard"><a href="#DebitCard" category="debitcard" default-ibibo-code="VISA">Debit Card</a><span class="white"></span></li>
+						<li class="emi"><a href="#EMI" category="emi" default-ibibo-code="">EMI</a><span class="white"></span></li>
+						<li class="netbanking"><a href="#NetBanking" category="netbanking" default-ibibo-code="">Net Banking</a><span class="white"></span></li>
+						<li class="paisawallet"><a href="#PayUMoney" category="paisawallet" default-ibibo-code="PAYUW">PayU Money</a><span class="white"></span></li>
+						<li class="cashcard"><a href="#CashCard" category="cashcard" default-ibibo-code="">Cash Card</a><span class="white"></span></li>
+						<li class="cod"><a href="#COD" category="cod" default-ibibo-code="COD">Cash on Delivery</a><span class="white"></span></li>
+					</ul>
+				</div>
+				<div id="CardConatiner">
+					<div class="page" id="CreditCard">
+						<div class="form" id="CreditCardForm">
+							<div class="row_new" id="StoredCreditCardContainer">
+								<div class="one">
+									<label>Select Stored Card</label>
+									<ul id="StoredCreditCards" class="StoreCardUl">
+										<li class="use_new_card">
+											<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
+											<div>Use New Card</div>
+										</li>
+									</ul>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<label>Name on Card</label>
-								<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
-							</div>
-						</div>
-						<div class="row">
-							<div class="three">
-								<label>Expiry Month</label>
-								<div class="textbox ExpiryMonthLabel hidden">XX</div>
-								<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
-									<option value="">Month</option>
-									<option value="01">Jan (01)</option>
-									<option value="02">Feb (02)</option>
-									<option value="03">Mar (03)</option>
-									<option value="04">Apr (04)</option>
-									<option value="05">May (05)</option>
-									<option value="06">Jun (06)</option>
-									<option value="07">Jul (07)</option>
-									<option value="08">Aug (08)</option>
-									<option value="09">Sep (09)</option>
-									<option value="10">Oct (10)</option>
-									<option value="11">Nov (11)</option>
-									<option value="12">Dec (12)</option>
-								</select>
-							</div>
-							<div class="three">
-								<label>Expiry Year</label>
-								<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-								<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
-									<option value="">Year</option>
-								</select>
-							</div>
-							<div class="three cvv">
-								<label>CVV</label> 
-								<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
-								<div class="hlp">
-									<span title="What is CVV?"><i>?</i></span>
-									<div class="info">
-										<div class="amex">
-											<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
-											<p>A 4-digit number on the front, just above on your credit card number.</p>
-										</div>
-										<div class="other">
-											<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
-											<p>A 3-digit number is reverse italics on the back of your card.</p>
+							<div class="new_card_form">
+								<p class="ErrorMessage">This is error message</p>
+								<div class="row">
+									<div class="one">
+										<label>Card Number</label>
+										<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
+										<span class="icon"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="one">
+										<label>Name on Card</label>
+										<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+									</div>
+								</div>
+								<div class="row">
+									<div class="three">
+										<label>Expiry Month</label>
+										<div class="textbox ExpiryMonthLabel hidden">XX</div>
+										<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+											<option value="">Month</option>
+											<option value="01">Jan (01)</option>
+											<option value="02">Feb (02)</option>
+											<option value="03">Mar (03)</option>
+											<option value="04">Apr (04)</option>
+											<option value="05">May (05)</option>
+											<option value="06">Jun (06)</option>
+											<option value="07">Jul (07)</option>
+											<option value="08">Aug (08)</option>
+											<option value="09">Sep (09)</option>
+											<option value="10">Oct (10)</option>
+											<option value="11">Nov (11)</option>
+											<option value="12">Dec (12)</option>
+										</select>
+									</div>
+									<div class="three">
+										<label>Expiry Year</label>
+										<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+										<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+											<option value="">Year</option>
+										</select>
+									</div>
+									<div class="three cvv">
+										<label>CVV</label> 
+										<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
+										<div class="hlp">
+											<span title="What is CVV?"><i>?</i></span>
+											<div class="info">
+												<div class="amex">
+													<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
+													<p>A 4-digit number on the front, just above on your credit card number.</p>
+												</div>
+												<div class="other">
+													<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
+													<p>A 3-digit number is reverse italics on the back of your card.</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
-								<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
-							</div>
-						</div>
-						<div class="row StoreCardRow">
-							<div class="one">
-								<div class="checkbox" data-callback="toggle_card_label">
-									<span class="mark">✔</span>
-									<span>Store this card for future transactions</span> 
-									<a href="javascript:void(0);" class="help_link">Learn More</a>
+								<div class="row">
+									<div class="one">
+										<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
+										<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+									</div>
 								</div>
-								<div class="card_label">
-									<label>Card Label</label> 
-									<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<input type="submit" value="Make Payment" class="button">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="page" id="DebitCard">
-				<div class="form" id="DebitCardForm">
-					<div class="row_new" id="StoredDebitCardContainer">
-						<div class="one">
-							<label>Select Stored Card</label>
-							<ul id="StoredDebitCards" class="StoreCardUl">
-								<li class="use_new_card">
-									<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
-									<div>Use New Card</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="new_card_form">
-						<p class="ErrorMessage">This is error message</p>
-						<div class="row">
-							<div class="one">
-								<label>Card Number</label> 
-								<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
-								<span class="icon"></span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="one">
-								<label>Name on Card</label> 
-								<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
-							</div>
-						</div>
-						<div class="row">
-							<div class="three">
-								<label>Expiry Month</label>
-									<div class="textbox ExpiryMonthLabel hidden">XX</div>
-									<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
-										<option value="">Month</option>
-										<option value="01">Jan (01)</option>
-										<option value="02">Feb (02)</option>
-										<option value="03">Mar (03)</option>
-										<option value="04">Apr (04)</option>
-										<option value="05">May (05)</option>
-										<option value="06">Jun (06)</option>
-										<option value="07">Jul (07)</option>
-										<option value="08">Aug (08)</option>
-										<option value="09">Sep (09)</option>
-										<option value="10">Oct (10)</option>
-										<option value="11">Nov (11)</option>
-										<option value="12">Dec (12)</option>
-									</select>
-								</div>
-								<div class="three">
-									<label>Expiry Year</label>
-									<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-									<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
-										<option value="">Year</option>
-									</select>
-								</div>
-								<div class="three cvv">
-									<label>CVV</label> 
-									<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
-									<div class="hlp">
-										<span title="What is CVV?"><i>?</i></span>
-										<div class="info">
-											<div class="amex">
-												<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
-												<p>A 4-digit number on the front, just above on your credit card number.</p>
-											</div>
-											<div class="other">
-												<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
-												<p>A 3-digit number is reverse italics on the back of your card.</p>
-											</div>
+								<div class="row StoreCardRow">
+									<div class="one">
+										<div class="checkbox" data-callback="toggle_card_label">
+											<span class="mark">✔</span>
+											<span>Store this card for future transactions</span> 
+											<a href="javascript:void(0);" class="help_link">Learn More</a>
 										</div>
+										<div class="card_label">
+											<label>Card Label</label> 
+											<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="one">
+										<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="one">
-								<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
-								<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
-							</div>
-						</div>
-						<div class="row StoreCardRow">
-							<div class="one">
-								<div class="checkbox" data-callback="toggle_card_label">
-									<span class="mark">✔</span><span>Store this card for future transactions</span> 
-									<a href="javascript:void(0);" class="help_link">Learn More</a>
-								</div>
-								<div class="card_label">
-									<label>Card Label</label> 
-									<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label">
+									<input type="submit" value="Make Payment" class="button">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="one">
-							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<input type="submit" value="Make Payment" class="button">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="page" id="EMI">
-				<div class="form" id="EmiForm">
-					<div class="row">
-						<div class="one">
-							<label>Select Your Bank</label>
-							<select name="emi_bank" class="textbox validate" validate="emi_bank" id="EmiBankSelectBox">
-								<option value="">Select Your Bank</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<label>Select EMI Duration</label>
-							<select name="emi_duration" disabled class="textbox validate disable" validate="emi_duration" id="EmiDurationSelectBox">
-								<option value="">Select Duration</option>
-							</select>
-						</div>
-					</div>
-					<div class="row" style="display: none;">
-						<div class="one"></div>
-					</div>
-					<div class="row" style="display: none;">
-						<div class="one"></div>
-					</div>
-					<div class="row" style="display: none;">
-						<div class="one">
-							<p class="message">Indicative EMI is <b>Rs. <span class="EmiAmount">1.67</span></b> and indicative total interest paid will be <b>Rs. <span class="EmiInterest"></span></b>. Taxes applicable on interest paid to bank.</p>
-						</div>
-					</div>
-					<div class="row" style="display: none;">
-						<div class="one">
-							<p class="message">Your monthly EMI payment will be <b>Rs. <span class="EmiAmount2">1.67</span></b>/month for the next <b>Rs. <span class="EmiTitle2"></span></b>.</p>
-						</div>
-					</div>
-					<div id="EmiCardContainer" style="display: none;">
-						<div class="row_new" id="StoredEmiCardContainer">
-							<div class="one">
-								<label>Select Stored Card</label>
-								<ul id="StoredEmiCards" class="StoreCardUl">
-									<li class="use_new_card">
-										<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
-										<div>Use New Card</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="new_card_form">
-							<div class="row">
+					<div class="page" id="DebitCard">
+						<div class="form" id="DebitCardForm">
+							<div class="row_new" id="StoredDebitCardContainer">
 								<div class="one">
-									<label>Card Number</label> 
-									<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
-									<span class="icon"></span>
+									<label>Select Stored Card</label>
+									<ul id="StoredDebitCards" class="StoreCardUl">
+										<li class="use_new_card">
+											<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
+											<div>Use New Card</div>
+										</li>
+									</ul>
 								</div>
 							</div>
-							<div class="row">
-								<div class="one">
-									<label>Name on Card</label> 
-									<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+							<div class="new_card_form">
+								<p class="ErrorMessage">This is error message</p>
+								<div class="row">
+									<div class="one">
+										<label>Card Number</label> 
+										<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
+										<span class="icon"></span>
+									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="three">
-									<label>Expiry Month</label>
-									<div class="textbox ExpiryMonthLabel hidden">XX</div>
-									<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
-										<option value="">Month</option>
-										<option value="01">Jan (01)</option>
-										<option value="02">Feb (02)</option>
-										<option value="03">Mar (03)</option>
-										<option value="04">Apr (04)</option>
-										<option value="05">May (05)</option>
-										<option value="06">Jun (06)</option>
-										<option value="07">Jul (07)</option>
-										<option value="08">Aug (08)</option>
-										<option value="09">Sep (09)</option>
-										<option value="10">Oct (10)</option>
-										<option value="11">Nov (11)</option>
-										<option value="12">Dec (12)</option>
-									</select>
+								<div class="row">
+									<div class="one">
+										<label>Name on Card</label> 
+										<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+									</div>
 								</div>
-								<div class="three">
-									<label>Expiry Year</label>
-									<div class="textbox ExpiryYearLabel hidden">XXXX</div>
-									<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
-										<option value="">Year</option>
-									</select>
-								</div>
-								<div class="three cvv">
-									<label>CVV</label> 
-									<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
-									<div class="hlp">
-										<span title="What is CVV?"><i>?</i></span>
-										<div class="info">
-											<div class="amex">
-												<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
-												<p>A 4-digit number on the front, just above on your credit card number.</p>
+								<div class="row">
+									<div class="three">
+										<label>Expiry Month</label>
+											<div class="textbox ExpiryMonthLabel hidden">XX</div>
+											<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+												<option value="">Month</option>
+												<option value="01">Jan (01)</option>
+												<option value="02">Feb (02)</option>
+												<option value="03">Mar (03)</option>
+												<option value="04">Apr (04)</option>
+												<option value="05">May (05)</option>
+												<option value="06">Jun (06)</option>
+												<option value="07">Jul (07)</option>
+												<option value="08">Aug (08)</option>
+												<option value="09">Sep (09)</option>
+												<option value="10">Oct (10)</option>
+												<option value="11">Nov (11)</option>
+												<option value="12">Dec (12)</option>
+											</select>
+										</div>
+										<div class="three">
+											<label>Expiry Year</label>
+											<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+											<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+												<option value="">Year</option>
+											</select>
+										</div>
+										<div class="three cvv">
+											<label>CVV</label> 
+											<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
+											<div class="hlp">
+												<span title="What is CVV?"><i>?</i></span>
+												<div class="info">
+													<div class="amex">
+														<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
+														<p>A 4-digit number on the front, just above on your credit card number.</p>
+													</div>
+													<div class="other">
+														<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
+														<p>A 3-digit number is reverse italics on the back of your card.</p>
+													</div>
+												</div>
 											</div>
-											<div class="other">
-												<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
-												<p>A 3-digit number is reverse italics on the back of your card.</p>
-											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="one">
+										<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
+										<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+									</div>
+								</div>
+								<div class="row StoreCardRow">
+									<div class="one">
+										<div class="checkbox" data-callback="toggle_card_label">
+											<span class="mark">✔</span><span>Store this card for future transactions</span> 
+											<a href="javascript:void(0);" class="help_link">Learn More</a>
+										</div>
+										<div class="card_label">
+											<label>Card Label</label> 
+											<input type="text" class="textbox validate" name="store_card_label" validate="card_label" placeholder="Card Label">
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="one">
-									<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
-									<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+									<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<input type="submit" value="Make Payment" class="button">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="one">
-							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+					<div class="page" id="EMI">
+						<div class="form" id="EmiForm">
+							<div class="row">
+								<div class="one">
+									<label>Select Your Bank</label>
+									<select name="emi_bank" class="textbox validate" validate="emi_bank" id="EmiBankSelectBox">
+										<option value="">Select Your Bank</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<label>Select EMI Duration</label>
+									<select name="emi_duration" disabled class="textbox validate disable" validate="emi_duration" id="EmiDurationSelectBox">
+										<option value="">Select Duration</option>
+									</select>
+								</div>
+							</div>
+							<div class="row" style="display: none;">
+								<div class="one"></div>
+							</div>
+							<div class="row" style="display: none;">
+								<div class="one"></div>
+							</div>
+							<div class="row" style="display: none;">
+								<div class="one">
+									<p class="message">Indicative EMI is <b>Rs. <span class="EmiAmount">1.67</span></b> and indicative total interest paid will be <b>Rs. <span class="EmiInterest"></span></b>. Taxes applicable on interest paid to bank.</p>
+								</div>
+							</div>
+							<div class="row" style="display: none;">
+								<div class="one">
+									<p class="message">Your monthly EMI payment will be <b>Rs. <span class="EmiAmount2">1.67</span></b>/month for the next <b>Rs. <span class="EmiTitle2"></span></b>.</p>
+								</div>
+							</div>
+							<div id="EmiCardContainer" style="display: none;">
+								<div class="row_new" id="StoredEmiCardContainer">
+									<div class="one">
+										<label>Select Stored Card</label>
+										<ul id="StoredEmiCards" class="StoreCardUl">
+											<li class="use_new_card">
+												<input type="radio" name="store_card_radio" token="0" class="radio store_card_radio" value="0">
+												<div>Use New Card</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="new_card_form">
+									<div class="row">
+										<div class="one">
+											<label>Card Number</label> 
+											<input type="text" class="textbox validate" validate="card_number" maxlength="19" name="card_number" placeholder="Card Number">
+											<span class="icon"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="one">
+											<label>Name on Card</label> 
+											<input type="text" class="textbox validate" validate="name_on_card" name="name_on_card" placeholder="Name on Card">
+										</div>
+									</div>
+									<div class="row">
+										<div class="three">
+											<label>Expiry Month</label>
+											<div class="textbox ExpiryMonthLabel hidden">XX</div>
+											<select class="ExpiryMonth textbox validate" validate="expiry_month" name="expiry_month">
+												<option value="">Month</option>
+												<option value="01">Jan (01)</option>
+												<option value="02">Feb (02)</option>
+												<option value="03">Mar (03)</option>
+												<option value="04">Apr (04)</option>
+												<option value="05">May (05)</option>
+												<option value="06">Jun (06)</option>
+												<option value="07">Jul (07)</option>
+												<option value="08">Aug (08)</option>
+												<option value="09">Sep (09)</option>
+												<option value="10">Oct (10)</option>
+												<option value="11">Nov (11)</option>
+												<option value="12">Dec (12)</option>
+											</select>
+										</div>
+										<div class="three">
+											<label>Expiry Year</label>
+											<div class="textbox ExpiryYearLabel hidden">XXXX</div>
+											<select class="ExpiryYear textbox validate" validate="expiry_year" name="expiry_year">
+												<option value="">Year</option>
+											</select>
+										</div>
+										<div class="three cvv">
+											<label>CVV</label> 
+											<input type="password" class="textbox validate" validate="cvv" placeholder="CVV" maxlength="3" name="cvv">
+											<div class="hlp">
+												<span title="What is CVV?"><i>?</i></span>
+												<div class="info">
+													<div class="amex">
+														<img src="https://static.payu.in/images/cvv_new/cvv_amex_new.png">
+														<p>A 4-digit number on the front, just above on your credit card number.</p>
+													</div>
+													<div class="other">
+														<img src="https://static.payu.in/images/cvv_new/cvv_visa_master_new.png">
+														<p>A 3-digit number is reverse italics on the back of your card.</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="one">
+											<p class="HideCvvExpiry message"><b>Click Here</b> if you don't have CVV and Expiry</p>
+											<p class="ShowCvvExpiry message"><b>Click Here</b> if you have CVV and Expiry</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<input type="submit" value="Make Payment" class="button">
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="one">
-							<input type="submit" value="Make Payment" class="button">
+					<div class="page" id="NetBanking">
+						<div class="form" id="NetBankingForm">
+							<div class="row">
+								<div class="one">
+									<label>Select Your Bank</label>
+									<select name="net_banking" class="textbox validate" validate="net_banking" id="NetBankingSelectBox">
+										<option value="">Select Your Bank</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<input type="submit" value="Make Payment" class="button">
+								</div>
+							</div>
 						</div>
+					</div>
+					
+					<div class="page" id="PayUMoney">
+						<div class="form" id="PayUMoneyForm">
+							<p class="heading" style="margin-bottom:10px;text-align:center;">Use PayUMoney to get <span class="cahbackPercent"></span>% Discount (Max <img width="7" height="10" src="data:image/gif;base64,R0lGODlhCgARALMOADIyMrm5uSIiIoaGhsrKykNDQ+vr61RUVGVlZdra2hEREXZ2dqioqAAAAPz8/AAAACH5BAEAAA4ALAAAAAAKABEAAARFMLFJqWo447I6yMiSSNPXINOlZVy3HJvozM6CMbNhBPBJa4oFzSHAHIazAEaRQDoGGIDT0UM4DcUGDkm4KAxOaKMwpcwiADs=" alt=""> <span id="maxCashback"></span>)</p>
+							<div class="card_support" style="padding:10px 0;">
+								<div class="wallet_info"><strong>Supports all Credit Cards, Debit Cards and Netbanking options</strong></div>
+							</div>
+							<div style="padding:10px 0;"><p>Enter PayUMoney details to get Discount</p></div>
+							<div class="row">
+								<div class="one">
+									<label>Email Address</label>
+									<input class="textbox validate" name="email" id="moneyEmail" validate="email" placeholder="Your Email" type="text">
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<label>Mobile Number</label>
+									<input class="textbox validate" name="phone" id="moneyPhone" validate="mobile" maxlength="10" placeholder="Your Mobile Number" type="text">
+								</div>
+							</div>
+							<div class="button_container">
+								<p><span>Note: In the next step you will be redirected to PayUMoney site. Please enter card or netbanking details after sign-in to earn discount.</span></p>
+								<p style="padding:10px 0;"><input value="Pay Using PayUMoney" class="button" type="submit"></p>
+							</div>	
+						</div>
+					</div>
+					<div class="page" id="CashCard">
+						<div class="form" id="CashCardForm">
+							<div class="row">
+								<div class="one">
+									<label>Select Your Cash Card</label>
+									<select name="cash_card" class="textbox validate" validate="cash_card" id="CashCardSelectBox">
+										<option value="">Select Your Cash Card</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<input type="submit" value="Make Payment" class="button">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="page" id="COD">
+						<p>Please confirm your shipping address for cash on delivery payment</p>
+						<div class="form" id="CodForm">
+							<div class="row">
+								<div class="two">
+									<label>First Name</label> 
+									<input type="text" name="first_name" class="textbox validate" validate="name" placeholder="First Name">
+								</div>
+								<div class="two">
+									<label>Last Name</label> 
+									<input type="text" name="last_name" class="textbox validate" validate="name" placeholder="Last Name">
+								</div>
+							</div>
+							<div class="row">
+								<div class="two">
+									<label>Address Line 1</label> 
+									<input type="text" name="address_line_1" class="textbox validate" validate="address" placeholder="Address Line 1">
+								</div>
+								<div class="two">
+									<label>Address Line 2</label> 
+									<input type="text" name="address_line_2" class="textbox validate" validate="address" placeholder="Address Line 2">
+								</div>
+							</div>
+							<div class="row">
+								<div class="two">
+									<label>City</label> 
+									<input type="text" name="city" class="textbox validate" validate="name" placeholder="City">
+								</div>
+								<div class="two">
+									<label>State</label>
+									<select name="state" class="textbox validate">
+										<option value="">Select State</option>
+										<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+										<option value="Andhra Pradesh">Andhra Pradesh</option>
+										<option value="Assam">Assam</option>
+										<option value="Bihar">Bihar</option>
+										<option value="Chandigarh">Chandigarh</option>
+										<option value="Chhattisgarh">Chhattisgarh</option>
+										<option value="Delhi">Delhi</option>
+										<option value="Goa">Goa</option>
+										<option value="Gujarat">Gujarat</option>
+										<option value="Haryana">Haryana</option>
+										<option value="Himachal Pradesh">Himachal Pradesh</option>
+										<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+										<option value="Jharkhand">Jharkhand</option>
+										<option value="Karnataka">Karnataka</option>
+										<option value="Kerala">Kerala</option>
+										<option value="Madhya Pradesh">Madhya Pradesh</option>
+										<option value="Maharashtra">Maharashtra</option>
+										<option value="Manipur">Manipur</option>
+										<option value="Meghalaya">Meghalaya</option>
+										<option value="Mizoram">Mizoram</option>
+										<option value="Nagaland">Nagaland</option>
+										<option value="Orissa">Orissa</option>
+										<option value="Punjab">Punjab</option>
+										<option value="Rajasthan">Rajasthan</option>
+										<option value="Sikkim">Sikkim</option>
+										<option value="Tamil Nadu">Tamil Nadu</option>
+										<option value="Tripura">Tripura</option>
+										<option value="Uttarakhand">Uttarakhand</option>
+										<option value="Uttar Pradesh">Uttar Pradesh</option>
+										<option value="West Bengal">West Bengal</option>
+										<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+										<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+										<option value="Daman and Diu">Daman and Diu</option>
+										<option value="Lakshadweep">Lakshadweep</option>
+										<option value="Pondicherry">Pondicherry</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="two">
+									<label>Country</label> 
+									<input type="text" name="country" class="textbox validate" validate="name" placeholder="Country">
+								</div>
+								<div class="two">
+									<label>Pin Code</label> 
+									<input type="text" name="pin_code" class="textbox validate" validate="numbers" placeholder="Pin Code">
+								</div>
+							</div>
+							<div class="row">
+								<div class="two">
+									<label>Mobile</label> 
+									<input type="text" name="mobile" class="textbox validate" validate="numbers" placeholder="Mobile">
+								</div>
+								<div class="two">
+									<label>Verify Yourself</label> 
+									<input type="text" name="captcha_text" class="textbox captcha validate" validate="captcha">
+									<div id="CaptchaDiv"><span></span><a href="javascript:void(0);">↻</a></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one">
+									<input type="submit" value="Make Payment" class="button">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div id="secure_logo">
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUsAAAAgCAIAAAFjlv1yAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjE1M0ZCMTVFQzc3RDExRTI4RTU4OUEzOThBQjY4MDI3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjE1M0ZCMTVGQzc3RDExRTI4RTU4OUEzOThBQjY4MDI3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MTUzRkIxNUNDNzdEMTFFMjhFNTg5QTM5OEFCNjgwMjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MTUzRkIxNURDNzdEMTFFMjhFNTg5QTM5OEFCNjgwMjciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6X6KOHAAA560lEQVR42mL8//8/A+3B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" alt="">
 					</div>
 				</div>
 			</div>
-			<div class="page" id="NetBanking">
-				<div class="form" id="NetBankingForm">
-					<div class="row">
-						<div class="one">
-							<label>Select Your Bank</label>
-							<select name="net_banking" class="textbox validate" validate="net_banking" id="NetBankingSelectBox">
-								<option value="">Select Your Bank</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<input type="submit" value="Make Payment" class="button">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="page" id="CashCard">
-				<div class="form" id="CashCardForm">
-					<div class="row">
-						<div class="one">
-							<label>Select Your Cash Card</label>
-							<select name="cash_card" class="textbox validate" validate="cash_card" id="CashCardSelectBox">
-								<option value="">Select Your Cash Card</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<input type="submit" value="Make Payment" class="button">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="page" id="COD">
-				<p>Please confirm your shipping address for cash on delivery payment</p>
-				<div class="form" id="CodForm">
-					<div class="row">
-						<div class="two">
-							<label>First Name</label> 
-							<input type="text" name="first_name" class="textbox validate" validate="name" placeholder="First Name">
-						</div>
-						<div class="two">
-							<label>Last Name</label> 
-							<input type="text" name="last_name" class="textbox validate" validate="name" placeholder="Last Name">
-						</div>
-					</div>
-					<div class="row">
-						<div class="two">
-							<label>Address Line 1</label> 
-							<input type="text" name="address_line_1" class="textbox validate" validate="address" placeholder="Address Line 1">
-						</div>
-						<div class="two">
-							<label>Address Line 2</label> 
-							<input type="text" name="address_line_2" class="textbox validate" validate="address" placeholder="Address Line 2">
-						</div>
-					</div>
-					<div class="row">
-						<div class="two">
-							<label>City</label> 
-							<input type="text" name="city" class="textbox validate" validate="name" placeholder="City">
-						</div>
-						<div class="two">
-							<label>State</label>
-							<select name="state" class="textbox validate">
-								<option value="">Select State</option>
-								<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-								<option value="Andhra Pradesh">Andhra Pradesh</option>
-								<option value="Assam">Assam</option>
-								<option value="Bihar">Bihar</option>
-								<option value="Chandigarh">Chandigarh</option>
-								<option value="Chhattisgarh">Chhattisgarh</option>
-								<option value="Delhi">Delhi</option>
-								<option value="Goa">Goa</option>
-								<option value="Gujarat">Gujarat</option>
-								<option value="Haryana">Haryana</option>
-								<option value="Himachal Pradesh">Himachal Pradesh</option>
-								<option value="Jammu and Kashmir">Jammu and Kashmir</option>
-								<option value="Jharkhand">Jharkhand</option>
-								<option value="Karnataka">Karnataka</option>
-								<option value="Kerala">Kerala</option>
-								<option value="Madhya Pradesh">Madhya Pradesh</option>
-								<option value="Maharashtra">Maharashtra</option>
-								<option value="Manipur">Manipur</option>
-								<option value="Meghalaya">Meghalaya</option>
-								<option value="Mizoram">Mizoram</option>
-								<option value="Nagaland">Nagaland</option>
-								<option value="Orissa">Orissa</option>
-								<option value="Punjab">Punjab</option>
-								<option value="Rajasthan">Rajasthan</option>
-								<option value="Sikkim">Sikkim</option>
-								<option value="Tamil Nadu">Tamil Nadu</option>
-								<option value="Tripura">Tripura</option>
-								<option value="Uttarakhand">Uttarakhand</option>
-								<option value="Uttar Pradesh">Uttar Pradesh</option>
-								<option value="West Bengal">West Bengal</option>
-								<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-								<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-								<option value="Daman and Diu">Daman and Diu</option>
-								<option value="Lakshadweep">Lakshadweep</option>
-								<option value="Pondicherry">Pondicherry</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="two">
-							<label>Country</label> 
-							<input type="text" name="country" class="textbox validate" validate="name" placeholder="Country">
-						</div>
-						<div class="two">
-							<label>Pin Code</label> 
-							<input type="text" name="pin_code" class="textbox validate" validate="numbers" placeholder="Pin Code">
-						</div>
-					</div>
-					<div class="row">
-						<div class="two">
-							<label>Mobile</label> 
-							<input type="text" name="mobile" class="textbox validate" validate="numbers" placeholder="Mobile">
-						</div>
-						<div class="two">
-							<label>Verify Yourself</label> 
-							<input type="text" name="captcha_text" class="textbox captcha validate" validate="captcha">
-							<div id="CaptchaDiv"><span></span><a href="javascript:void(0);">↻</a></div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<p class="message"><b>Note:</b> After clicking on the "Make Payment" button you might be taken to your bank's website for 3D secure authentication.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="one">
-							<input type="submit" value="Make Payment" class="button">
-						</div>
-					</div>
-				</div>
-			</div>
-			<ul id="secure_logo">
-				<li class="visa"><a url="https://usa.visa.com/personal/security/vbv/index.html?ep=v_sym_/verified" href="javascript:void(0);"></a></li>
-				<li class="master"><a url="http://www.mastercard.com/us/business/en/corporate/securecode/sc_popup.html?language=en" href="javascript:void(0);"></a></li>
-				<li class="verisign"><a url="https://seal.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=www.payu.in&amp;lang=en" href="javascript:void(0);"></a></li>
-				<li class="pci"><a url="http://seal.controlcase.com/index.php?page=showCert&amp;cId=3877025869" href="javascript:void(0);"></a></li>
-			</ul>
 		</div>
 	</div>
 	<div id="PopupBox">
@@ -642,19 +670,25 @@ body{font-family:Arial, Helvitica, sans-serif;font-size:12px;color:#3d3d3d;}
 			<input type="button" value="Ok" class="button active" id="LearnMoreOkButton">
 		</div>
 	</div>
+</div>
 </body>
+<script src="_jscriptAPI?jqueryUI=0&txtid=<?php print mihpayencode($mihpayid); ?>"></script>
 <script type="text/javascript">
 var date = new Date();
-var VaidationRegex = {numbers:/^[0-9]+$/i,address:/^[a-z0-9\.\-\/ ]+$/i,name:/^[a-z ]+$/i,name_on_card: /^[a-z0-9\.\- ]+$/i,card_number: /^\d+$/,cvv: /^(?!000)\d{3}$/,cvv4: /^(?!000)\d{4}$/, card_label:/^[a-z]*[0-9]{1,4}[a-z]*$|^[a-z]*$/};
+var VaidationRegex = {numbers:/^[0-9]+$/i,address:/^[a-z0-9\.\-\/ ]+$/i,name:/^[a-zA-Z ]+$/i,name_on_card:/^[a-z0-9\.\- ]+$/i,card_number:/^\d+$/,cvv:/^(?!000)\d{3}$/,cvv4:/^(?!000)\d{4}$/,card_label:/^[a-zA-Z]*[0-9]{1,4}[a-zA-Z]*$|^[a-zA-Z]*$/,email:/^[a-z0-9]+([_\\.-][a-z0-9]+)*@([a-z0-9]+([\.-][a-z0-9]+){1,2})/i,mobile:/^\d{10}$/};
 var CardTypes = [{name: "amex",pattern: /^(34|37)/,valid_length: [15],ibibocode: "AMEX"}, {name: "diners",pattern: /^(30|36|38)/,valid_length: [14],ibibocode: "DINR"}, {name: "visa",pattern: /^4/,valid_length: [16],ibibocode: "VISA"}, {name: "mastercard",pattern: /^5[1-5]/,valid_length: [16],ibibocode: "MAST"}, {name: "maestro",pattern: /^(50|63|66|5[6-8]|6[8-9]|600[0-9]|6010|601[2-9]|60[2-9]|61|620|621|6220|6221[0-1])/,valid_length: [12, 13, 14, 15, 16, 17, 18, 19],ibibocode: "MAES"}];
 var StoredCards = PayU.getUserCards();
 var StoredCardCC = 0;
 var StoredCardDC = 0;
 var IbiboCodes = PayU.getIbiboCodes();
+var transaction = PayU.getTransaction();
 var SbiBinList = ["504435","504645","504774","504775","504809","504993","600206","603845","622018"];
 var CurrentCapta = null;
 FormError = false;
 $(document).ready(function(){
+	$(".txnNumber").text(transaction.txnid);
+	$(".txnAmount").text(transaction.transaction_fee);
+	
 	$(".help_link").click(function(){
 		$("#PopupBox").hide().fadeIn("fast");
 	});
@@ -693,6 +727,9 @@ $(document).ready(function(){
 			$("#StoredCard").val(true).attr("token", CurrentCard.card_token);
 			if(Cat != 'emi'){
 				$("#IbiboCode").val(CurrentCard.card_type);
+				if(typeof IbiboCodes[Cat][$("#IbiboCode").val()].additional_charge != 'undefined' && IbiboCodes[Cat][$("#IbiboCode").val()].additional_charge > 0){
+					$(".processingFee").text(IbiboCodes[Cat][$("#IbiboCode").val()].additional_charge).parents('li').slideDown('fast');
+				}
 			}
 		}else{
 			Form.find("input[type='text'], select").not('.store_card_cvv').addClass("validate");
@@ -700,10 +737,10 @@ $(document).ready(function(){
 			Form.find(".new_card_form").fadeIn('fast');
 			$(".cvv .hlp .info .amex").hide();
 			$(".cvv .hlp .info .other").show();
+			$(".processingFee").text('').parents('li').slideUp('fast');
 		}
 	});
 	$("#secure_logo a").click(function(){
-		top[0].open($(this).attr("url"), "_blank","toolbar=0,scrollbars=1,resizable=1,width=550,height=500");
 		return false;
 	});
 	CurrentCapta = getCaptcha();
@@ -716,6 +753,11 @@ $(document).ready(function(){
 		$("#CaptchaDiv span").text(CurrentCapta);
 	});
 	$("#tabs li a").click(function(){
+		var $tab = $("#TabContainer");
+		var $card = $("#CardConatiner");
+		if($tab.height() > $card.height()){
+			$card.css('min-height', $tab.height() + 20 + 'px');
+		}
 		ResetAll();
 		$('.page').hide();
 		$("#tabs li").removeClass('sel');
@@ -818,6 +860,9 @@ $(document).ready(function(){
 	if(typeof IbiboCodes != 'undefined' && IbiboCodes != null){
 		$.each(IbiboCodes, function(Opt, OptObj){
 			$("." + Opt).show();
+			if(Opt == 'paisawallet'){
+				initPayUMoney();
+			}
 		});	
 	}
 
@@ -854,6 +899,7 @@ $(document).ready(function(){
 	$("#EmiForm").validate();
 	$("#CashCardForm").validate();
 	$("#CodForm").validate();
+	$("#PayUMoneyForm").validate();
 	
 	$(".HideCvvExpiry").click(function(){
 		$(this).parents('.form').find('.three').parents('.row').find('input, select').attr('disabled', true).removeClass('validate error').addClass("disable").val("");
@@ -886,6 +932,9 @@ $(document).ready(function(){
 	
 	$("#NetBankingSelectBox").change(function(){
 		$("#IbiboCode").val($(this).val());
+		if(typeof IbiboCodes['netbanking'][$(this).val()].additional_charge != 'undefined' && IbiboCodes['netbanking'][$(this).val()].additional_charge > 0){
+			$(".processingFee").text(IbiboCodes['netbanking'][$(this).val()].additional_charge).parents('li').slideDown('fast');
+		}
 		if($(this).val() == 'CITNB'){
 			$(this).val('');
 			$("#tabs li a[category='debitcard']").click();
@@ -928,6 +977,8 @@ $(document).ready(function(){
 		$(".EmiInterest").parents('.row').hide();
 		$(".EmiAmount2").parents('.row').hide();
 		$("#EmiDurationSelectBox").html('<option value="">Select Duration');
+		$("#StoredEmiCards li input[type='radio']").attr('checked', false).removeAttr('checked');
+		$("#StoredEmiCards li").removeClass('disabled').find('input').removeAttr('disabled');
 		var EmiOptions = '';
 		if($(this).val() != ""){
 			$.each(EmiData[$(this).val()].sort(sort_by('title', true)), function(ind, obj){
@@ -937,6 +988,7 @@ $(document).ready(function(){
 		}else{
 			$("#EmiDurationSelectBox").attr("disabled", true).addClass("disable");
 		}
+		$(".processingFee").text('').parents('li').slideUp('fast');
 	});
 	
 	$("#EmiDurationSelectBox").change(function(){
@@ -960,13 +1012,33 @@ $(document).ready(function(){
 				$(".EmiAmount2").text(EmiCharges.amount);
 				$(".EmiTitle2").text($(this).find("option:selected").text()).parents('.row').fadeIn('fast');
 			}
+			
 			$("#IbiboCode").val($(this).val());
+			if(EmiCharges.bankCharge){
+				$(".processingFee").text(EmiCharges.bankCharge).parents('li').slideDown('fast');	
+			}
+
+
+			$("#StoredEmiCards li").each(function(){
+				var $ele = $(this);
+				var cardToken = $ele.attr('token');
+				if(typeof cardToken !== typeof undefined && cardToken !== false){
+					var Card = StoredCards[cardToken];
+					if($("#IbiboCode").val().indexOf('AMEX') == -1 && Card.card_type == 'AMEX'){
+						$ele.addClass('disabled').find('input').attr('disabled', true);
+					}else if(Card.card_type != 'AMEX' && $("#IbiboCode").val().indexOf('AMEX') != -1){
+						$ele.addClass('disabled').find('input').attr('disabled', true);
+					}
+				}
+			});
+			
 		}else{
 			$("#EmiCardContainer").slideUp('fast');
 			$(".EmiBankChargesMessage").html("").parents(".row").hide();
 			$(".EmiBankInterestMessage").html("").parents(".row").hide();
 			$(".EmiAmount").parents('.row').hide();
 			$(".EmiAmount2").parents('.row').hide();
+			$(".processingFee").text('').parents('li').slideUp('fast');
 		}
 	});
 	if(typeof IbiboCodes.cashcard != 'undefined'){
@@ -978,9 +1050,25 @@ $(document).ready(function(){
 	$("#CashCardSelectBox").change(function(){
 		if($(this).val() != ''){
 			$("#IbiboCode").val($(this).val());
+			if(typeof IbiboCodes['cashcard'][$(this).val()].additional_charge != 'undefined' && IbiboCodes['cashcard'][$(this).val()].additional_charge > 0){
+				$(".processingFee").text(IbiboCodes['cashcard'][$(this).val()].additional_charge).parents('li').slideDown('fast');	
+			}
 		}
 	});
 });
+
+function initPayUMoney(){
+	var cashbackPercent = PayU.getCashBackPercent();
+	var maxCashback = PayU.getMaxCashBack();
+
+	$(".cahbackPercent").text(cashbackPercent);
+	$("#maxCashback").text(maxCashback);
+
+
+	$("#moneyEmail").removeClass('error').val(transaction.email);
+	$("#moneyPhone").removeClass('error').val(transaction.phone);
+}
+
 var ResetAll = function(){
 	$("#CreditCardForm").resetAll();
 	$("#DebitCardForm").resetAll();
@@ -988,7 +1076,11 @@ var ResetAll = function(){
 	$("#EmiForm").resetAll();
 	$("#CashCardForm").resetAll();
 	$("#CodForm").resetAll();
+	$("#PayUMoneyForm").find('input').not(':submit, :button').removeClass("error");
 	CurrentCapta = getCaptcha();
+	if(typeof IbiboCodes.paisawallet != 'undefined'){
+		initPayUMoney();
+	}
 	$("#CaptchaDiv span").text(CurrentCapta);
 	$("#EmiForm").find("#EmiCardContainer").hide();
 	$("#EmiForm").find(".EmiAmount").parents(".row").hide();
@@ -999,6 +1091,8 @@ var ResetAll = function(){
 	$("#StoredCard").val('false').removeAttr('token');
 	$(".cvv .hlp .info .amex").hide();
 	$(".cvv .hlp .info .other").show();
+	$(".processingFee").text('').parents('li').slideUp('fast');
+	
 }
 $.fn.resetAll = function(){
 	$(this).find("input, select").not(":submit, :button").val("").removeClass("error").next(".icon").removeClass("visa maestro mastercard amex diners");
@@ -1082,7 +1176,6 @@ $.fn.validate = function(){
 					 PayU.setCardToken($("#StoredCard").attr("token"));
 					 FormData.cvv = FormData.s_cvv;
 				}
-				PayU.setCardDetails(FormData.card_number, FormData.cvv, FormData.name_on_card, FormData.expiry_month, FormData.expiry_year);
 				if($("#Category").val() == 'cod'){
 					var CodData = "shipping_firstname=" + FormData.first_name;
 					CodData += "|shipping_lastname=" + FormData.last_name;
@@ -1094,7 +1187,11 @@ $.fn.validate = function(){
 					CodData += "|shipping_zipcode=" + FormData.pin_code;
 					CodData += "|shipping_phone=" + FormData.mobile;
 					PayU.processForm({cod_data:CodData});
+				}else if($("#IbiboCode").val() == 'PAYUW'){
+					var WalletData = "wallet_email=" + FormData.email + "|wallet_phone=" + FormData.phone;
+					PayU.processForm({wallet_data:WalletData});
 				}else{
+					PayU.setCardDetails(FormData.card_number, FormData.cvv, FormData.name_on_card, FormData.expiry_month, FormData.expiry_year);
 					PayU.processForm();	
 				}
 				FormObj.find("input[type='submit']").addClass('disable').attr("disabled", true);
@@ -1129,6 +1226,21 @@ $.fn.validate = function(){
 					$("#Category").val('creditcard');
 				}else if(CardObject.ibibocode == "MAES"){
 					$("#Category").val('debitcard');
+				}
+				if($("#Category").val() != 'emi'){
+					if($("#Category").val() == 'creditcard' && CardObject.ibibocode != "AMEX" && CardObject.ibibocode != "DINR"){
+						if(typeof IbiboCodes[$("#Category").val()]['CC'].additional_charge != 'undefined' && IbiboCodes[$("#Category").val()]['CC'].additional_charge > 0){
+							$(".processingFee").text(IbiboCodes[$("#Category").val()]['CC'].additional_charge).parents('li').slideDown('fast');
+						}
+					}else if($("#Category").val() == 'debitcard' && CardObject.ibibocode != "AMEX" && CardObject.ibibocode != "DINR"){
+						if(typeof IbiboCodes[$("#Category").val()]['VISA'].additional_charge != 'undefined' && IbiboCodes[$("#Category").val()]['VISA'].additional_charge > 0){
+							$(".processingFee").text(IbiboCodes[$("#Category").val()]['VISA'].additional_charge).parents('li').slideDown('fast');
+						}
+					}else{
+						if(typeof IbiboCodes[$("#Category").val()][CardObject.ibibocode].additional_charge != 'undefined' && IbiboCodes[$("#Category").val()][CardObject.ibibocode].additional_charge > 0){
+							$(".processingFee").text(IbiboCodes[$("#Category").val()][CardObject.ibibocode].additional_charge).parents('li').slideDown('fast');
+						}
+					}
 				}
 
 				if(CardObject.ibibocode == "AMEX"){
